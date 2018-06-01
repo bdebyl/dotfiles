@@ -9,5 +9,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
     alias pacman='sudo pacman'
+    alias emc='emacsclient -t'
     alias gitcleanup='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 fi
