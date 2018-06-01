@@ -1,0 +1,102 @@
+URxvt.depth:                32
+URxvt.geometry:             90x30
+URxvt.transparent:          true
+<<<<<<< Updated upstream
+URxvt.shading:              30
+URxvt.visualBell:           true
+=======
+URxvt.shading:              40
+URxvt.visualBell:           false
+>>>>>>> Stashed changes
+URxvt.loginShell:           true
+URxvt.saveLines:            512
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+URxvt.allow_bold:           true
+<<<<<<< Updated upstream
+URxvt*font:                 xft:DejaVuSansMono:pixelsize=12:antialias=false
+URxvt*letterSpace:          0.5
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #657b83
+URxvt.cursorUnderline:      false
+URxvt.pointerBlank:         true
+URxvt*pointerColorBackground: #586e75
+URxvt*pointerColorForeground: #93a1a1
+! special
+URxvt*.foreground:   #d0d0d0
+URxvt*.background:   #151515
+URxvt*.cursorColor:  #d0d0d0
+! black
+URxvt*.color0:       #151515
+URxvt*.color8:       #505050
+! red
+URxvt*.color1:       #ac4142
+URxvt*.color9:       #ac4142
+! green
+URxvt*.color2:       #90a959
+URxvt*.color10:      #90a959
+! yellow
+URxvt*.color3:       #f4bf75
+URxvt*.color11:      #f4bf75
+! blue
+URxvt*.color4:       #4b7180
+URxvt*.color12:      #4b7180
+! magenta
+URxvt*.color5:       #aa759f
+URxvt*.color13:      #aa759f
+! cyan
+URxvt*.color6:       #75b5aa
+URxvt*.color14:      #75b5aa
+! white
+URxvt*.color7:       #d0d0d0
+URxvt*.color15:      #f5f5f5
+=======
+URxvt.font:                 xft:DejaVuSansMono:size=8:antialias=false
+URxvt*letterSpace:          0
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #77bb33
+URxvt.cursorUnderline:      false
+! URxvt.pointerBlank:         true
+! URxvt*pointerColorBackground: #586e75
+! URxvt*pointerColorForeground: #93a1a1
+! special
+*.foreground:   #bebebe
+*.background:   #000000
+*.cursorColor:  #bebebe
+! black
+*.color0:       #000000
+*.color8:       #222222
+! red
+*.color1:       #f25a5a
+*.color9:       #ffbbbb
+! green
+*.color2:       #77bb33
+*.color10:      #dcf692
+! yellow
+*.color3:       #efc334
+*.color11:      #f6df92
+! blue
+*.color4:       #5555dd
+*.color12:      #b2baf6
+! magenta
+*.color5:       #c350ff
+*.color13:      #f09fff
+! cyan
+*.color6:       #5af2ee
+*.color14:      #5af2ee
+! white
+*.color7:       #bebebe
+*.color15:      #eeeeee
+
+>>>>>>> Stashed changes
+!! Copy/paste
+URxvt.keysym.Shift-Control-V:    perl:clipboard:paste
+URxvt.iso14755:                  False
+URxvt.perl-ext-common:           default,clipboard,matcher
+!! Extensions and URLs
+URxvt.url-launcher:              /usr/bin/firefox
+URxvt.matcher.button:            1
