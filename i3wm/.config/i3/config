@@ -168,6 +168,4 @@ bindsym Print       exec "flameshot gui"
 
 # Startup applications
 ## Wallpaper
-exec --no-startup-id "exec feh --bg-fill ~/Pictures/wall.png"
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/rxvt-unicode'
+exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton; fi
