@@ -100,7 +100,7 @@ fi
 export PATH=~/.local/bin:$PATH
 export GOPATH="${HOME}/gocode"
 export PATH=$GOPATH/bin:$PATH
-
+export BRWOSER=/usr/bin/firefox
 
 #   ___ _ __ ___   __ _  ___ ___
 #  / _ \ '_ ` _ \ / _` |/ __/ __|
@@ -109,7 +109,6 @@ export PATH=$GOPATH/bin:$PATH
 #
 export ALTERNATE_EDITOR="nano"
 export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -c -a emacs"
 
 #  _                   _           _
 # | | _____ _   _  ___| |__   __ _(_)_ __

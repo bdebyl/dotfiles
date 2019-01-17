@@ -163,9 +163,12 @@ bar {
 }
 
 # Custom configurations
-bindsym $mod+Ctrl+l exec "/usr/bin/i3lock -c 111111 -e --image=/home/bdebyl/Pictures/wall.png"
-bindsym Print       exec "flameshot gui"
+bindsym $mod+Ctrl+l exec /usr/bin/i3lock -c 111111 -e
+bindsym Print       exec flameshot gui
 
 # Startup applications
 ## Wallpaper
+exec feh --bg-fill ~/Pictures/wall.png
 exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton; fi
+
+gaps inner 10
