@@ -1,0 +1,72 @@
+!                         _
+!  _   _ _ ____  ____   _| |_
+! | | | | V__\ \/ /\ \ / / __|
+! | |_| | |   >  <  \ V /| |_
+!  \__,_|_|  /_/\_\  \_/  \__|
+!
+URxvt.allow_bold:       true
+URxvt.cursorBlink:      true
+URxvt.cursorUnderline:  false
+URxvt.depth:            32
+URxvt.font:             xft:DejaVuSansMono:size=8:antialias=false;
+URxvt.geometry:         90x30
+URxvt.internalBorder:   3
+URxvt.letterSpace:      0
+URxvt.lineSpace:        0
+URxvt.loginShell:       true
+URxvt.saveLines:        512
+URxvt.scrollBar:        false
+URxvt.shading:          40
+URxvt.transparent:      true
+URxvt.visualBell:       false
+!! Colors
+URxvt.foreground:       #bebebe
+URxvt.cursorColor:      #bebebe
+!! Copy/paste
+URxvt.keysym.Shift-Control-V:    perl:clipboard:paste
+URxvt.iso14755:                  False
+URxvt.perl-ext-common:           default,clipboard,matcher
+
+!      _
+!  ___| |_
+! / __| __|
+! \__ \ |_
+! |___/\__|
+!
+st.font:        DejaVuSansMono:pixelsize=11:antialias=false;
+st.alpha:       120
+!! Colors
+st.foreground:  #000000
+
+! special
+*.background:   #bebebe
+
+! black
+*.color0:       #000000
+*.color8:       #222222
+! red
+*.color1:       #f25a5a
+*.color9:       #ffbbbb
+! green
+*.color2:       #77bb33
+*.color10:      #dcf692
+! yellow
+*.color3:       #a1c454
+*.color11:      #f6df92
+! blue
+*.color4:       #5555dd
+*.color12:      #b2baf6
+! magenta
+*.color5:       #c350ff
+*.color13:      #f09fff
+! cyan
+*.color6:       #5af2ee
+*.color14:      #5af2ee
+! white
+*.color7:       #bebebe
+*.color15:      #eeeeee
+
+
+!! Extensions and URLs
+*.url-launcher:              /usr/bin/firefox
+*.matcher.button:            1

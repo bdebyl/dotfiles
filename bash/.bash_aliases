@@ -11,5 +11,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias rgrep='grep --color=auto --recursive'
     alias pacman='sudo pacman'
     alias emc='emacsclient -t'
+    alias diff='diff --color=auto'
     alias gitcleanup='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 fi

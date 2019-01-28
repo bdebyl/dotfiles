@@ -24,6 +24,14 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# make less more friendly for non-text input files, see lesspipe(1)
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
 #  ____  ____  _
 # |  _ \/ ___|/ |
 # | |_) \___ \| |
@@ -52,20 +60,11 @@ function parse_git_branch {
    fi
    if [[ ${git_status} =~ ${branch_pattern} ]]; then
        branch=${BASH_REMATCH[1]}
-       echo "( ${branch}${remote}${state} )"
+       echo " [ ${branch}${remote}${state} ]"
    fi
 }
 
-# Example from dstraffin:
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\$ '
-
-case "$TERM" in
-xterm*|rxvt*|eterm*)
-    PS1="┌─( \[$(tput setaf 6)\]\u\[$(tput sgr0)\] )────────( \[$(tput setaf 4)\]\w\[$(tput sgr0)\] )────────( \[$(tput setaf 3)\]\$(date +%Y.%m.%d\ -\ %H:%M:%S)\[$(tput sgr0)\]\n└─\[$(tput setaf 61)\]\$(parse_git_branch)\[$(tput sgr0)\]──┤ "
-    ;;
-*)
-    ;;
-esac
+PS1="( \[$(tput setaf 6)\]\u\[$(tput sgr0)\] )──( \[$(tput setaf 4)\]\w\[$(tput sgr0)\] )\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] $ "
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -97,18 +96,18 @@ fi
 #  \ V / (_| | |  \__ \
 #   \_/ \__,_|_|  |___/
 #
-export PATH=~/.local/bin:$PATH
-export GOPATH="${HOME}/gocode"
-export PATH=$GOPATH/bin:$PATH
-export BRWOSER=/usr/bin/firefox
+if [ -f ~/.bash_vars ]; then
+    . ~/.bash_vars
+fi
 
 #   ___ _ __ ___   __ _  ___ ___
 #  / _ \ '_ ` _ \ / _` |/ __/ __|
 # |  __/ | | | | | (_| | (__\__ \
 #  \___|_| |_| |_|\__,_|\___|___/
 #
-export ALTERNATE_EDITOR="nano"
-export EDITOR="emacsclient -t"
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -nw"
+export VISUAL="emacsclient -nw"
 
 #  _                   _           _
 # | | _____ _   _  ___| |__   __ _(_)_ __
