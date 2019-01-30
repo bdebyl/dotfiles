@@ -1,0 +1,6 @@
+#contributor : Bastian de Byl
+#name : <tag>...</tag>
+# --
+<$1${2:}>
+  $0
+</$1>

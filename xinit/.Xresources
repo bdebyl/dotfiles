@@ -34,7 +34,7 @@ URxvt.perl-ext-common:           default,clipboard,matcher
 ! |___/\__|
 !
 st.font:        DejaVuSansMono:pixelsize=11:antialias=false;
-st.alpha:       120
+st.alpha:       200
 !! Colors
 st.foreground:  #000000
 
