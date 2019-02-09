@@ -1,35 +1,13 @@
-;;
-;;  _____ __  __    _    ____ ____    _       _ _         _
-;; | ____|  \/  |  / \  / ___/ ___|  (_)_ __ (_) |_   ___| |
-;; |  _| | |\/| | / _ \| |   \___ \  | | '_ \| | __| / _ \ |
-;; | |___| |  | |/ ___ \ |___ ___) | | | | | | | |_ |  __/ |
-;; |_____|_|  |_/_/   \_\____|____/  |_|_| |_|_|\__(_)___|_|
-;;
-
-;; list the repositories containing them
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
-
-;; activate all the packages (in particular autoloads)
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; fetch the list of packages available
+;; Fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; ;; install the missing packages
-;; (dolist (package package-list)
-;;   (unless (package-installed-p package)
-;;     (package-install package)))
-
-;;
-;;  _____ __  __    _    ____ ____    ____            _          _   _   _
-;; | ____|  \/  |  / \  / ___/ ___|  |  _ \ ___   ___| | _____  | | | | | |
-;; |  _| | |\/| | / _ \| |   \___ \  | |_) / _ \ / __| |/ / __| | | | | | |
-;; | |___| |  | |/ ___ \ |___ ___) | |  _ < (_) | (__|   <\__ \ |_| |_| |_|
-;; |_____|_|  |_/_/   \_\____|____/  |_| \_\___/ \___|_|\_\___/ (_) (_) (_)
-;;
 ;;  _   _                 _____                    _
 ;; | | | |___  ___ _ __  |_   _|_      _____  __ _| | _____
 ;; | | | / __|/ _ \ '__|   | | \ \ /\ / / _ \/ _` | |/ / __|
@@ -42,7 +20,6 @@
 
 ;; Enable line numbers
 (add-hook 'after-init-hook 'global-linum-mode)
-(setq linum-format "%4d \u2502")
 
 ;; Change font size
 (set-face-attribute 'default nil :height 80)
@@ -54,23 +31,29 @@
 ;; Delete selection mode
 (delete-selection-mode 1)
 
-;; json indent to 2-spaces
+;; JSON indent to 2-spaces
 (add-hook 'json-mode-hook
           (lambda ()
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
 
-;; Disable line-wrapping
-(setq-default truncate-lines t)
+;; Recent file mode
+(recentf-mode 1)
 
-;; Set the default auto-backup directory
-(setq backup-directory-alist `(("." . "~/.saves")))
+;; Conf-mode
+(add-to-list 'auto-mode-alist '("\\.bash.*\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("config\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\..*rc\\'" . conf-mode))
 
-;; Set transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-;; (add-to-list 'default-frame-alist '(alpha 90 90))
+;; Figlet default font (not custom-set-variable capable)
+(setq figlet-default-font "standard")
 
-;; Delete duplicate line command
+;;                 _                      _       __
+;;   ___ _   _ ___| |_ ___  _ __ ___   __| | ___ / _|___
+;;  / __| | | / __| __/ _ \| '_ ` _ \ / _` |/ _ \ |_/ __|
+;; | (__| |_| \__ \ || (_) | | | | | | (_| |  __/  _\__ \
+;;  \___|\__,_|___/\__\___/|_| |_| |_|\__,_|\___|_| |___/
+;;
 (defun uniq-lines (beg end)
   "Unique lines in region.
 Called from a program, there are two arguments:
@@ -90,6 +73,17 @@ BEG and END (region to sort)."
             (replace-match "" nil nil))
           (goto-char next-line))))))
 
+(defun add-hook-multi (function hooks)
+  "Allow adding multiple hooks to one mode"
+  (mapc (lambda (hook)
+          (add-hook hook function))
+        hooks))
+
+(defun find-user-init-file ()
+  "Edit the 'user-init-file' in a current window"
+  (interactive)
+  (find-file user-init-file))
+
 ;;                 _                  _
 ;;   ___ _   _ ___| |_ ___  _ __ ___ | | _____ _   _ ___
 ;;  / __| | | / __| __/ _ \| '_ ` _ \| |/ / _ \ | | / __|
@@ -102,15 +96,35 @@ BEG and END (region to sort)."
 ;; Make window taller
 (global-set-key (kbd "C-x '") 'enlarge-window)
 
-;;                   _                              _
-;;   ___  _ __ __ _ (_) ___  _   _ _ __ _ __   __ _| |
-;;  / _ \| '__/ _` || |/ _ \| | | | '__| '_ \ / _` | |
-;; | (_) | | | (_| || | (_) | |_| | |  | | | | (_| | |
-;;  \___/|_|  \__, |/ |\___/ \__,_|_|  |_| |_|\__,_|_|
-;;            |___/__/
-;;
-(org-version) ;; Required for including org-journal
+;; Init file shortcut
+(global-set-key (kbd "C-c I") 'find-user-init-file)
+
+;; Multiple Cursors
+(global-set-key (kbd "C-^") 'mc/mark-next-like-this)
+
+;; Show recent opened files
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+;; Smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+;;                        _                              _
+;;   ___  _ __ __ _      (_) ___  _   _ _ __ _ __   __ _| |
+;;  / _ \| '__/ _` |_____| |/ _ \| | | | '__| '_ \ / _` | |
+;; | (_) | | | (_| |_____| | (_) | |_| | |  | | | | (_| | |
+;;  \___/|_|  \__, |    _/ |\___/ \__,_|_|  |_| |_|\__,_|_|
+;;            |___/    |__/
+(org-version)
 (require 'org-journal)
+
+;;                        _               _
+;;   ___  _ __ __ _      | |__  _ __ __ _(_)_ __
+;;  / _ \| '__/ _` |_____| '_ \| '__/ _` | | '_ \
+;; | (_) | | | (_| |_____| |_) | | | (_| | | | | |
+;;  \___/|_|  \__, |     |_.__/|_|  \__,_|_|_| |_|
+;;            |___/
+(require 'org-brain)
 
 ;;
 ;;                           _
@@ -119,10 +133,12 @@ BEG and END (region to sort)."
 ;; \__ \ | | | | | (_| | |  | |_| |_) | (_| | | |  __/ | | \__ \
 ;; |___/_| |_| |_|\__,_|_|   \__| .__/ \__,_|_|  \___|_| |_|___/
 ;;                              |_|
-;;
 (require 'smartparens-config)
-(add-hook 'prog-mode-hook 'smartparens-mode)
-(add-hook 'yaml-mode-hook 'smartparens-mode)
+(add-hook-multi
+ 'smartparens-mode
+ '(prog-mode-hook
+   yaml-mode-hook
+   org-mode-hook))
 
 ;; Rainbow delimeters
 (require 'rainbow-delimiters)
@@ -136,11 +152,7 @@ BEG and END (region to sort)."
 ;; |_|_| |_|\__,_|\___|_| |_|\__\__,_|\__|_|\___/|_| |_|
 ;;
 ;; Indentation guides
-(setq highlight-indent-guides-method 'character)
-(setq highlight-indent-guides-auto-enabled nil)
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4) ; Assuming you want your tabs to be four spaces wide
 (defvaralias 'c-basic-offset 'tab-width)
 
 (add-hook 'perl-mode-hook
@@ -150,29 +162,17 @@ BEG and END (region to sort)."
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
-(setq-default fci-rule-column 80)
-(setq-default fci-rule-character 58)
-(setq-default fci-rule-character-color "white")
-(add-hook 'prog-mode-hook 'fci-mode)
-(add-hook 'text-mode-hook 'fci-mode)
-(add-hook 'conf-unix-mode-hook 'fci-mode)
+(add-hook-multi
+ 'fci-mode
+ '(prog-mode-hook
+   text-mode-hook
+   conf-unix-mode-hook))
 
 ;; Fill-column
-(setq-default fill-column 80)
-(add-hook 'markdown-mode-hook 'auto-fill-mode)
-(add-hook 'org-mode-hook 'auto-fill-mode)
-
-;;  __  __       _ _   _       _         ____
-;; |  \/  |_   _| | |_(_)_ __ | | ___   / ___|   _ _ __ ___  ___  _ __ ___
-;; | |\/| | | | | | __| | '_ \| |/ _ \ | |  | | | | '__/ __|/ _ \| '__/ __|
-;; | |  | | |_| | | |_| | |_) | |  __/ | |__| |_| | |  \__ \ (_) | |  \__ \
-;; |_|  |_|\__,_|_|\__|_| .__/|_|\___|  \____\__,_|_|  |___/\___/|_|  |___/
-;;                      |_|
-(global-set-key (kbd "C-c C-<") 'mc/edit-lines)
-(global-set-key (kbd "C-^") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-c C-S-c") 'mc/edit-lines)
+(add-hook-multi
+ 'auto-fill-mode
+ '(markdown-mode-hook
+   org-mode-hook))
 
 ;;
 ;;                        _                  _
@@ -228,23 +228,18 @@ BEG and END (region to sort)."
 ;;                      |_|        |_|
 (require 'py-autopep8)
 
-;;
-;;  _   _      _
-;; | | | | ___| |_ __ ___
-;; | |_| |/ _ \ | '_ ` _ \
-;; |  _  |  __/ | | | | | |
-;; |_| |_|\___|_|_| |_| |_|
-;;
-;;
-(require 'helm-config)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-c C-h g") 'helm-google-suggest)
-(global-set-key (kbd "C-c C-h o") 'helm-occur)
-(define-key minibuffer-local-map (kbd "C-c C-h h") 'helm-minibuffer-history)
-(helm-mode 1)
+;;  _     _
+;; (_) __| | ___    _   ___ _ __ ___   _____  __
+;; | |/ _` |/ _ \ _| |_/ __| '_ ` _ \ / _ \ \/ /
+;; | | (_| | (_) |_   _\__ \ | | | | |  __/>  <
+;; |_|\__,_|\___/  |_| |___/_| |_| |_|\___/_/\_\
+(require 'smex)
+(require 'ido-vertical-mode)
+(ido-mode 1)
+(ido-vertical-mode 1)
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+(smex-initialize)
+
 
 ;;   ___ ___  _ __ ___  _ __   __ _ _ __  _   _
 ;;  / __/ _ \| '_ ` _ \| '_ \ / _` | '_ \| | | |
@@ -255,16 +250,6 @@ BEG and END (region to sort)."
 (require 'company)
 (require 'company-go)
 (add-hook 'after-init-hook 'global-company-mode)
-; bigger popup window
-(setq company-tooltip-limit 20)
-; decrease delay before autocompletion popup shows
-(setq company-idle-delay .3)
-; remove annoying blinking
-(setq company-echo-delay 0)
-; start autocompletion only after typing
-(setq company-begin-commands '(self-insert-command))
-(setq exec-path (append exec-path '("/home/bdebyl/gocode/bin")))
-;; Using auto-complete in place of company
 (add-hook 'go-mode-hook
           (lambda ()
             (set (make-local-variable 'company-backends) '(company-go))
@@ -321,14 +306,6 @@ BEG and END (region to sort)."
           '(lambda ()
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-;;   __ _       _      _
-;;  / _(_) __ _| | ___| |_
-;; | |_| |/ _` | |/ _ \ __|
-;; |  _| | (_| | |  __/ |_
-;; |_| |_|\__, |_|\___|\__|
-;;        |___/
-(setq figlet-default-font "standard")
-
 ;;                                            _
 ;;   ___  _ __ __ _       _ __ ___   ___   __| | ___
 ;;  / _ \| '__/ _` |_____| '_ ` _ \ / _ \ / _` |/ _ \
@@ -336,32 +313,31 @@ BEG and END (region to sort)."
 ;;  \___/|_|  \__, |     |_| |_| |_|\___/ \__,_|\___|
 ;;            |___/
 ;;
-(setq org-default-notes-file "~/org/notes.org")
 (define-key global-map "\C-cc" 'org-capture)
 (setq org-capture-templates
       '(("t" "Todo" entry
          (file+headline "~/org/gtd.org" "Tasks") "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry
          (file+datetree "~/org/journal.org") "* %?\nEntered on %U\n  %i\n  %a")))
+
+;;                 _                                 _
+;;   ___ _   _ ___| |_ ___  _ __ ___        ___  ___| |_
+;;  / __| | | / __| __/ _ \| '_ ` _ \ _____/ __|/ _ \ __|
+;; | (__| |_| \__ \ || (_) | | | | | |_____\__ \  __/ |_
+;;  \___|\__,_|___/\__\___/|_| |_| |_|     |___/\___|\__|
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bm-face ((t (:background "#000087" :foreground "#ffffff"))))
- '(ethan-wspace-face ((t (:background "#cd0000"))))
  '(font-lock-comment-face ((t (:foreground "#808080"))))
  '(font-lock-constant-face ((t (:foreground "#00d7ff"))))
  '(font-lock-function-name-face ((t (:foreground "#ffff00"))))
  '(font-lock-string-face ((t (:foreground "#00afd7"))))
- '(helm-ff-directory ((t (:foreground "#cd00cd"))))
- '(helm-ff-dirs ((t (:inherit font-lock-function-name-face))))
- '(helm-ff-dotted-directory ((t (:foreground "blue"))))
- '(helm-ff-symlink ((t (:foreground "green"))))
- '(helm-selection ((t (:background "#5e5e02"))))
  '(highlight ((t (:background "#5fd7d7"))))
  '(hl-line ((t (:background "#4d4d4d"))))
  '(linum ((t (:foreground "#00cd00"))))
+ '(magit-reflog-commit ((t (:foreground "#005500"))))
  '(mode-line ((t (:background "#4d4d4d" :foreground "#5fffaf"))))
  '(mode-line-highlight ((t (:box (:line-width 2 :color "#5fff87")))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#ffffff"))))
@@ -374,14 +350,35 @@ BEG and END (region to sort)."
  '(rainbow-delimiters-depth-8-face ((t (:foreground "#bebebe"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "#ff6347"))))
  '(rainbow-delimiters-unmatched-face ((t (:foreground "#ff0000"))))
+ '(smerge-refined-added ((t (:inherit smerge-refined-change :background "red"))))
  '(sp-pair-overlay-face ((t (:background "magenta")))))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(backup-directory-alist (\` (("." . "~/.saves"))))
+ '(company-echo-delay 0 t)
+ '(company-idle-delay 0.3)
+ '(company-tooltip-limit 20)
+ '(fci-rule-character 58)
+ '(fci-rule-character-color "white")
+ '(fci-rule-column 80)
+ '(fill-column 80)
+ '(highlight-indent-guides-auto-enabled nil)
+ '(highlight-indent-guides-method (quote character))
+ '(ido-enable-flex-matching t)
+ '(ido-everywhere t)
+ '(indent-tabs-mode nil)
+ '(linum-format "%4d │")
+ '(org-default-notes-file "~/org/notes.org")
+ '(org-journal-dir "~/org/journal/")
+ '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides helm figlet expand-region dockerfile-mode dired-single ctable concurrent company-web company-lua company-go company-ghci company-ghc company-auctex company-ansible auto-complete))))
+    (ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode dired-single ctable concurrent company-web company-lua company-go company-ghci company-ghc company-auctex company-ansible auto-complete)))
+ '(recentf-max-menu-items 25)
+ '(tab-width 4)
+ '(truncate-lines t)
+ '(vc-follow-symlinks t))
