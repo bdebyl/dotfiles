@@ -377,8 +377,9 @@ BEG and END (region to sort)."
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode dired-single ctable concurrent company-web company-lua company-go company-ghci company-ghc company-auctex company-ansible auto-complete)))
+    (web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode dired-single ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
  '(tab-width 4)
  '(truncate-lines t)
- '(vc-follow-symlinks t))
+ '(vc-follow-symlinks t)
+ '(web-mode-markup-indent-offset 2))
