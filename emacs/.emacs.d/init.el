@@ -137,6 +137,7 @@ BEG and END (region to sort)."
 (add-hook-multi
  'smartparens-mode
  '(prog-mode-hook
+   markdown-mode-hook
    yaml-mode-hook
    org-mode-hook))
 
@@ -158,21 +159,21 @@ BEG and END (region to sort)."
 (add-hook 'perl-mode-hook
           '(lambda()
              (setq indent-tabs-mode 1)))
-(add-hook 'prog-mode-hook 'whitespace-cleanup-mode)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
 (add-hook-multi
  'fci-mode
- '(prog-mode-hook
-   text-mode-hook
-   conf-unix-mode-hook))
+ '(prog-mode-hook text-mode-hook conf-unix-mode-hook))
 
 ;; Fill-column
 (add-hook-multi
  'auto-fill-mode
- '(markdown-mode-hook
-   org-mode-hook))
+ '(markdown-mode-hook org-mode-hook))
+
+;; Spell Check for Markdown
+(add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;;
 ;;                        _                  _
@@ -333,7 +334,9 @@ BEG and END (region to sort)."
  '(font-lock-comment-face ((t (:foreground "#808080"))))
  '(font-lock-constant-face ((t (:foreground "#00d7ff"))))
  '(font-lock-function-name-face ((t (:foreground "#ffff00"))))
+ '(font-lock-keyword-face ((t (:foreground "#cc55ff"))))
  '(font-lock-string-face ((t (:foreground "#00afd7"))))
+ '(font-lock-variable-name-face ((t (:foreground "#a1c454"))))
  '(highlight ((t (:background "#5fd7d7"))))
  '(hl-line ((t (:background "#4d4d4d"))))
  '(linum ((t (:foreground "#00cd00"))))
@@ -350,6 +353,7 @@ BEG and END (region to sort)."
  '(rainbow-delimiters-depth-8-face ((t (:foreground "#bebebe"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "#ff6347"))))
  '(rainbow-delimiters-unmatched-face ((t (:foreground "#ff0000"))))
+ '(shadow ((t (:foreground "grey60"))))
  '(smerge-refined-added ((t (:inherit smerge-refined-change :background "red"))))
  '(sp-pair-overlay-face ((t (:background "magenta")))))
 
@@ -362,6 +366,7 @@ BEG and END (region to sort)."
  '(company-echo-delay 0 t)
  '(company-idle-delay 0.3)
  '(company-tooltip-limit 20)
+ '(css-indent-offset 2)
  '(fci-rule-character 58)
  '(fci-rule-character-color "white")
  '(fci-rule-column 80)
@@ -371,6 +376,7 @@ BEG and END (region to sort)."
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(indent-tabs-mode nil)
+ '(ispell-program-name "/usr/bin/aspell")
  '(linum-format "%4d │")
  '(org-default-notes-file "~/org/notes.org")
  '(org-journal-dir "~/org/journal/")
@@ -379,6 +385,7 @@ BEG and END (region to sort)."
    (quote
     (web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode dired-single ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
+ '(sudo-edit-indicator-mode t)
  '(tab-width 4)
  '(truncate-lines t)
  '(vc-follow-symlinks t)

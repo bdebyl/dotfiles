@@ -12,7 +12,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias rgrep='grep -r --color=auto'
     alias mv='mv --verbose'
     alias diff='diff --color=auto'
-    alias emc='emacsclient -nw'
+    alias emc='TERM=xterm-256color emacsclient -nw'
     alias gitcleanup='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
     alias gitsync='git checkout master && git pull upstream master && git push origin master && gitcleanup'
     alias datestr='printf "%(%Y-%m-%d)T"'

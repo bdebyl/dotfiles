@@ -160,6 +160,7 @@ bar {
 }
 
 # Custom configurations
+bindsym $mod+P       exec passmenu
 bindsym $mod+Ctrl+l  exec /usr/bin/i3lock -c 111111 -e
 bindsym $mod+Shift+f exec --no-startup-id firefox
 bindsym Print        exec flameshot gui
