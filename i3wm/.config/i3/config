@@ -11,6 +11,11 @@
 
 # Custom aesthetic
 for_window [class="^.*"] border pixel 1
+
+for_window [title="camfloat"] floating enable
+for_window [title="camfloat"] sticky enable
+for_window [title="camfloat"] border pixel 0
+no_focus [title="camfloat"]
 # gaps inner 10
 set $mod Mod4
 
@@ -160,14 +165,15 @@ bar {
 }
 
 # Custom configurations
-bindsym $mod+P       exec passmenu
-bindsym $mod+Ctrl+l  exec /usr/bin/i3lock -c 111111 -e
+bindsym $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video0
+bindsym $mod+P       exec --no-startup-id passmenu
+bindsym $mod+Ctrl+l  exec --no-startup-id i3lock -c 111111 -e
 bindsym $mod+Shift+f exec --no-startup-id firefox
-bindsym Print        exec flameshot gui
+bindsym Print        exec --no-startup-id flameshot gui
 
 # Startup applications
 ## Wallpaper
-exec feh --bg-fill ~/Pictures/wall.png
+exec --no-startup-id feh --bg-fill ~/Pictures/wall.png
 exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton; fi
 
 gaps inner 10
