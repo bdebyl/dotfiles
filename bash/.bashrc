@@ -9,6 +9,11 @@ case $- in
       *) return;;
 esac
 
+# git info in bash prompt
+source $HOME/.bash/gitprompt.sh
+# colorful prompt hostnames
+source $HOME/.bash/col.sh
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -24,47 +29,13 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 #  ____  ____  _
 # |  _ \/ ___|/ |
 # | |_) \___ \| |
 # |  __/ ___) | |
 # |_|   |____/|_|
 #
-function parse_git_branch {
-   git rev-parse --git-dir &> /dev/null
-   git_status="$(git status 2>/dev/null)"
-   branch_pattern="^On branch ([^${IFS}]*)"
-   remote_pattern="Your branch is (.*) of"
-   diverge_pattern="Your branch and (.*) have diverged"
-   if [[ ! ${git_status} =~ "working directory clean" ]]; then
-       state=" √"
-   fi
-   # add an else if or two here if you want to get more specific
-   if [[ ${git_status} =~ ${remote_pattern} ]]; then
-       if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-           remote="↑"
-       else
-           remote="↓"
-       fi
-   fi
-   if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-       remote="↕"
-   fi
-   if [[ ${git_status} =~ ${branch_pattern} ]]; then
-       branch=${BASH_REMATCH[1]}
-       echo " [ ${branch}${remote}${state} ]"
-   fi
-}
-
-PS1="( \[$(tput setaf 6)\]\u@\h\[$(tput sgr0)\] )──( \[$(tput setaf 4)\]\w\[$(tput sgr0)\] )\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] $ "
+PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]$(chkcolor $HOSTNAME): \[$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]$(parse_git_branch)\[$(tput sgr0)\] $ "
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -170,3 +141,6 @@ else
         echo "gpg-agent - not available!?"
     fi
 fi
+
+# create the symbolic link to use for emacs
+ln -sf $SSH_AUTH_SOCK ~/.ssh_auth_sock

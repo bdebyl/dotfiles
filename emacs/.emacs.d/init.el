@@ -48,6 +48,9 @@
 ;; Figlet default font (not custom-set-variable capable)
 (setq figlet-default-font "standard")
 
+;; Fix for TRAMP to use ssh-agent
+(setenv "SSH_AUTH_SOCK" (concat (getenv "HOME") "/.ssh_auth_sock"))
+
 ;;                 _                      _       __
 ;;   ___ _   _ ___| |_ ___  _ __ ___   __| | ___ / _|___
 ;;  / __| | | / __| __/ _ \| '_ ` _ \ / _` |/ _ \ |_/ __|
