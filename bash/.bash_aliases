@@ -16,4 +16,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias gitcleanup='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
     alias gitsync='git checkout master && git pull upstream master && git push origin master && gitcleanup'
     alias datestr='printf "%(%Y-%m-%d)T"'
+    # pamixer
+    alias pgv='pamixer --get-volume'
+    alias pls='pamixer --list-sinks'
+    alias pss='pamixer --sink'
+    alias psv='pamixer --set-volume'
+    alias ptm='pamixer --toggle-mute'
+    # fzf
+    alias fcd='cd $(find $HOME -type d -not -path "*\.git" | fzf)'
 fi

@@ -1,0 +1,40 @@
+[global]
+# rendering
+geometry = "0x10+64-128"
+font = Monospace 10
+format = "<b>%s</b>\n%b"
+sort = yes
+ignore_newline = no
+indicate_hidden = yes
+# behavior
+follow = keyboard
+idle_threshold = 1
+# padding
+horizontal_padding = 5
+padding = 5
+# history
+sticky_history = yes
+history_length = 20
+
+[shortcuts]
+# close_all = +grave
+# history = ctrl+space
+
+[frame]
+width = 0
+color = "#000000"
+
+[urgency_low]
+background = "#000000"
+foreground = "#00CDCD"
+timeout = 4
+
+[urgency_normal]
+background = "#000000"
+foreground = "#00CD00"
+timeout = 6
+
+[urgency_critical]
+background = "#000000"
+foreground = "#CD0000"
+timeout = 30
