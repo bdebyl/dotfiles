@@ -11,8 +11,6 @@ esac
 
 # git info in bash prompt
 source $HOME/.bash/gitprompt.sh
-# colorful prompt hostnames
-source $HOME/.bash/col.sh
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -35,7 +33,7 @@ shopt -s checkwinsize
 # |  __/ ___) | |
 # |_|   |____/|_|
 #
-PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\[$(chkcolor $HOSTNAME)\]: \[$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] \$ "
+PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\h: \[\$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]$(parse_git_branch)\[$(tput sgr0)\] \$ "
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
