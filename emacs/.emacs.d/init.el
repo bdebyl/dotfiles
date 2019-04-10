@@ -159,6 +159,7 @@ BEG and END (region to sort)."
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (defvaralias 'c-basic-offset 'tab-width)
 
+(add-to-list 'auto-mode-alist '("\\.mc$" . perl-mode))
 (add-hook 'perl-mode-hook
           '(lambda()
              (setq indent-tabs-mode 1)))
