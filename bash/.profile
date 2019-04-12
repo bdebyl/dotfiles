@@ -1,3 +1,4 @@
+#!/bin/sh -e
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -8,7 +9,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
+uid=$(id -u)
+export XDG_RUNTIME_DIR="/run/user/$uid"
 
 #  _               _
 # | |__   __ _ ___| |__  _ __ ___
@@ -19,6 +21,7 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
+        # shellcheck source=.bashrc
         . "$HOME/.bashrc"
     fi
 fi

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-parse_git_branch() {
+parse_git_branch()
+{
     git rev-parse --git-dir &> /dev/null
     git_status="$(git status 2>/dev/null | sed 1q)"
     branch_pattern="^On branch ([^${IFS}]*)"
