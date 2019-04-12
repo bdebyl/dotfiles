@@ -173,7 +173,7 @@ bindsym Print        exec --no-startup-id flameshot gui
 
 # Startup applications
 ## Wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wall.png
+exec --no-startup-id feh --bg-fill /home/bdebyl/Pictures/wall.png
 exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton; fi
 
 gaps inner 10
