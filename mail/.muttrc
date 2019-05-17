@@ -1,0 +1,94 @@
+# interface
+set index_format = "%4C %Z %[%b %d %H:%M] %-15.15L (%?l?%4l&%4c?) %s"
+set sort         = threads
+set sort_aux     = reverse-last-date-received
+set sort_re
+
+# mail folders
+unset record
+set mbox_type = Maildir
+set sendmail  = /usr/bin/msmtp
+set folder    = "~/mail"
+set spoolfile = "+INBOX"
+set record    = "+Sent Items"
+set postponed = "+Drafts"
+source "~/.mutt/mailboxes"
+
+# identity
+source "~/.mutt/identity"
+
+# cryptography
+source "~/.mutt/gpg"
+
+# look and feel
+set pager_index_lines = 8
+set pager_context     = 5
+set pager_stop
+set menu_scroll
+set smart_wrap
+set tilde
+unset markers
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# composing
+unset mime_forward
+set fcc_attach
+set forward_format = "Fwd: %s"
+set include
+set forward_quote
+
+# headers
+ignore    *                            # first, ignore all headers
+unignore  from: to: cc: date: subject: # then, show only these
+hdr_order from: to: cc: date: subject: # and in this order
+
+# Sidebar mappings
+set sidebar_format        = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+set sidebar_next_new_wrap = yes
+set sidebar_short_path    = yes
+set sidebar_visible       = yes
+set sidebar_width         = 20
+bind index,pager \Co sidebar-open
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+
+# general index-colors
+color index  blue         default "~Q"  # those I have already replied to.
+color index  brightyellow default "~O"  # old
+color index  green        default "~F"  # flagged
+color index  red          default "~T"  # tagged
+color index  brightgreen  default "~N"  # new
+color index  magenta      default "~k"  # GPG
+color index  red          default "~D"  # deleted
+color index  yellow       default "~v"  # collapsed thread
+color index  red          default "~E"  # expired
+
+# header colors
+color header brightgreen   default "^Date:"
+color header brightyellow  default "^Subject:"
+color header brightmagenta default "^From:"
+color header brightcyan    default "^To:"
+color header brightcyan    default "^Reply-To:"
+color header brightcyan    default "^(CC|Cc|Bcc|BCC):"
+
+# sidebar colors
+color sidebar_highlight brightblue  default
+color sidebar_divider   white       default
+color sidebar_flagged   red         default
+color sidebar_new       green       default
+
+# other colors
+color attachment brightyellow  default
+color bold       brightwhite   default     # highlighting bold patterns in the body of messages
+color error      red           cyan        # error messages printed by Mutt
+color indicator  brightblack   brightgreen # arrow or bar used to indicate the current item in a menu
+color markers    red           default     # the ``+'' markers at the beginning of wrapped lines in the pager
+color message    brightblue    default     # informational messages
+color search     white         brightblue  # highlight of words in the pager
+color status     green         default     # mode lines used to display info about the mailbox or message
+color tilde      brightblue    default     # the ``~'' used to pad blank lines in the pager
+color tree       brightblue    default     # thread tree drawn in the message index and attachment menu
+
+# default normal
+color normal default default
