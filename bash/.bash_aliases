@@ -26,7 +26,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias psv='pamixer --set-volume'
     alias ptm='pamixer --toggle-mute'
     # fzf
-    alias fcd='cd $(find $HOME -depth -type d -not -path "*.git*" | fzf)'
+    alias fcd='cd $(find $HOME -type d -not -path "*.git*" | fzf)'
     # pasteix
     alias pasteix='curl -F "f:1=<-" ix.io <'
 fi

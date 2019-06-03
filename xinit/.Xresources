@@ -39,7 +39,7 @@ st.alpha:       200
 st.foreground:  #000000
 
 ! special
-*.background:   #bebebe
+!*.background:   #bebebe
 
 ! black
 *.color0:       #000000
