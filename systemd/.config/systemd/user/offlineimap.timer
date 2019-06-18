@@ -7,4 +7,4 @@ OnUnitInactiveSec=30s
 Unit=offlineimap.service
 
 [Install]
-WantedBy=mail.target
+WantedBy=default.target
