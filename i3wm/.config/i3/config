@@ -164,11 +164,12 @@ bar {
 }
 
 # Custom configurations
-bindsym $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video0
-bindsym $mod+P       exec --no-startup-id passmenu
-bindsym $mod+Ctrl+l  exec --no-startup-id i3lock -c 111111 -e
-bindsym $mod+Shift+f exec --no-startup-id firefox
-bindsym Print        exec --no-startup-id flameshot gui
+bindsym --release $mod+Ctrl+l  exec --no-startup-id slock
+bindsym           Print        exec --no-startup-id flameshot gui
+bindsym           $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video0
+bindsym           $mod+P       exec --no-startup-id passmenu
+bindsym           $mod+Shift+f exec --no-startup-id firefox
+
 
 # Startup applications
 ## Wallpaper
