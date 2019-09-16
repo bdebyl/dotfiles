@@ -1,7 +1,7 @@
 [global]
 # rendering
-geometry = "x2-0+32"
-font = Monospace 9
+geometry = "512x2-32+32"
+font = Monospace 10
 format = "<b>%s</b>\n%b"
 sort = yes
 ignore_newline = no
@@ -25,16 +25,16 @@ width = 0
 color = "#000000"
 
 [urgency_low]
-background = "#000000"
-foreground = "#00CDCD"
+background = "#111111"
+foreground = "#00CCCC"
 timeout = 3
 
 [urgency_normal]
-background = "#000000"
-foreground = "#00CD00"
+background = "#111111"
+foreground = "#00CC00"
 timeout = 5
 
 [urgency_critical]
-background = "#000000"
-foreground = "#CD0000"
+background = "#300000"
+foreground = "#FF0000"
 timeout = 30

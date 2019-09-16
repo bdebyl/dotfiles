@@ -11,7 +11,7 @@
 
 uid=$(id -u)
 export XDG_RUNTIME_DIR="/run/user/$uid"
-
+export BROWSER="firefox"
 #  _               _
 # | |__   __ _ ___| |__  _ __ ___
 # | '_ \ / _` / __| '_ \| '__/ __|

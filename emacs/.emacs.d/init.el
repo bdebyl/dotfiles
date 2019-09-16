@@ -287,16 +287,10 @@ BEG and END (region to sort)."
 ;;
 ;;
 ;; force dired to reuse dired buffer instead of opening a new one
-(add-hook 'dired-mode-hook (lambda () (local-set-key [return] 'dired-single-buffer)))
 (add-hook 'dired-mode-hook
-          (lambda () (local-set-key "^" (function
-                                         (lambda nil
-                                           (interactive)
-                                           (dired-single-buffer ".."))))))
-;; syntax highlighting in dired mode
-(add-hook 'dired-mode-hook #'(lambda () (font-lock-mode 1)))
-;; load dired extras
-(add-hook 'dired-load-hoo (function (lambda () (load "dired-x"))))
+          (lambda ()
+            (define-key dired-mode-map (kbd "^")
+              (lambda () (interactive) (find-alternate-file "..")))))
 
 ;;                        _                           _
 ;;  _   _  __ _ _ __ ___ | |      _ __ ___   ___   __| | ___
@@ -387,10 +381,11 @@ BEG and END (region to sort)."
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode dired-single ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
+    (groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
  '(sudo-edit-indicator-mode t)
  '(tab-width 4)
  '(truncate-lines t)
  '(vc-follow-symlinks t)
  '(web-mode-markup-indent-offset 2))
+(put 'dired-find-alternate-file 'disabled nil)

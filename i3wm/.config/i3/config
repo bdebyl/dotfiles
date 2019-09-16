@@ -159,9 +159,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+# bar {
+#         status_command i3status
+# }
 
 # Custom configurations
 bindsym --release $mod+Ctrl+l  exec --no-startup-id slock
@@ -174,6 +174,7 @@ bindsym           $mod+Shift+f exec --no-startup-id firefox
 # Startup applications
 ## Wallpaper
 exec --no-startup-id feh --bg-fill $(find $HOME -name wall.png -type f -print -quit)
-exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton; fi
+exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton -C -b; fi
+exec --no-startup-id if ! pgrep polybar > /dev/null; then /usr/bin/polybar bar; fi
 
 gaps inner 6

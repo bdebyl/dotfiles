@@ -10,6 +10,10 @@ case $- in
     *) return;;
 esac
 
+# script for using a file as a stack for persistence
+# shellcheck source=.bash/stackfile.sh
+. "$HOME/.bash/stackfile.sh"
+
 # git info in bash prompt
 # shellcheck source=.bash/gitprompt.sh
 . "$HOME/.bash/gitprompt.sh"
