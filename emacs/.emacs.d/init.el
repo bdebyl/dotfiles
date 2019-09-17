@@ -165,12 +165,6 @@ BEG and END (region to sort)."
              (setq indent-tabs-mode 1)))
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
-;; Fill Column Indicator
-(require 'fill-column-indicator)
-(add-hook-multi
- 'fci-mode
- '(prog-mode-hook text-mode-hook conf-unix-mode-hook))
-
 ;; Fill-column
 (add-hook-multi
  'auto-fill-mode
@@ -339,6 +333,7 @@ BEG and END (region to sort)."
  '(hl-line ((t (:background "#4d4d4d"))))
  '(linum ((t (:foreground "#00cd00"))))
  '(magit-reflog-commit ((t (:foreground "#005500"))))
+ '(minibuffer-prompt ((t (:foreground "brightblue"))))
  '(mode-line ((t (:background "#4d4d4d" :foreground "#5fffaf"))))
  '(mode-line-highlight ((t (:box (:line-width 2 :color "#5fff87")))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#ffffff"))))
@@ -353,7 +348,8 @@ BEG and END (region to sort)."
  '(rainbow-delimiters-unmatched-face ((t (:foreground "#ff0000"))))
  '(shadow ((t (:foreground "grey60"))))
  '(smerge-refined-added ((t (:inherit smerge-refined-change :background "red"))))
- '(sp-pair-overlay-face ((t (:background "magenta")))))
+ '(sp-pair-overlay-face ((t (:background "magenta"))))
+ '(web-mode-html-tag-bracket-face ((t (:foreground "green")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -365,9 +361,6 @@ BEG and END (region to sort)."
  '(company-idle-delay 0.3)
  '(company-tooltip-limit 20)
  '(css-indent-offset 2)
- '(fci-rule-character 58)
- '(fci-rule-character-color "white")
- '(fci-rule-column 80)
  '(fill-column 80)
  '(highlight-indent-guides-auto-enabled nil)
  '(highlight-indent-guides-method (quote character))
