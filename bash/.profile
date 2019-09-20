@@ -34,11 +34,20 @@ fi
 # |_|
 # Set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
 fi
 
 # add gopath
 if [ -d "$HOME/go/bin" ] ; then
-    GOPATH="$HOME/go/bin"
-    PATH="$GOPATH:$PATH"
+    export GOPATH="$HOME/go/bin"
+    export PATH="$GOPATH:$PATH"
+fi
+
+
+#   ___ _ __ ___   __ _  ___ ___
+#  / _ \ '_ ` _ \ / _` |/ __/ __|
+# |  __/ | | | | | (_| | (__\__ \
+#  \___|_| |_| |_|\__,_|\___|___/
+if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
+   exec emacs --daemon
 fi
