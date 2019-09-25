@@ -1,10 +1,6 @@
 #!/bin/bash
-#   ___ ___  _ __ ___
-#  / __/ _ \| '__/ _ \
-# | (_| (_) | | |  __/
-#  \___\___/|_|  \___|
 
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 case $- in
     *i*) ;;
     *) return;;
@@ -37,12 +33,11 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-#  ____  ____  _
-# |  _ \/ ___|/ |
-# | |_) \___ \| |
-# |  __/ ___) | |
-# |_|   |____/|_|
-#
+#                          _
+#  _ __ _ _ ___ _ __  _ __| |_
+# | '_ \ '_/ _ \ '  \| '_ \  _|
+# | .__/_| \___/_|_|_| .__/\__|
+# |_|                |_|
 PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\h: \[\$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] \$ "
 
 # colored GCC warnings and errors
@@ -51,12 +46,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # fix for gpg agent prompt
 export GPG_TTY=$(tty)
 
-#        _ _
-#   __ _| (_) __ _ ___  ___  ___
-#  / _` | | |/ _` / __|/ _ \/ __|
-# | (_| | | | (_| \__ \  __/\__ \
-#  \__,_|_|_|\__,_|___/\___||___/
-#
+#       _ _
+#  __ _| (_)__ _ ___ ___ ___
+# / _` | | / _` (_-</ -_|_-<
+# \__,_|_|_\__,_/__/\___/__/
 if [ -f "$HOME/.bash_aliases" ]; then
     # shellcheck source=.bash_aliases
     . "$HOME/.bash_aliases"
@@ -76,24 +69,35 @@ if ! shopt -oq posix; then
 fi
 
 
-# __   ____ _ _ __ ___
-# \ \ / / _` | '__/ __|
-#  \ V / (_| | |  \__ \
-#   \_/ \__,_|_|  |___/
-#
+# __ ____ _ _ _ ___
+# \ V / _` | '_(_-<
+#  \_/\__,_|_| /__/
 if [ -f "$HOME/.bash_vars" ]; then
     # shellcheck source=/dev/null
     . "$HOME/.bash_vars"
 fi
 
-#   ___ _ __ ___   __ _  ___ ___
-#  / _ \ '_ ` _ \ / _` |/ __/ __|
-# |  __/ | | | | | (_| | (__\__ \
-#  \___|_| |_| |_|\__,_|\___|___/
-#
-export ALTERNATE_EDITOR=""
+
+#  ___ _ __  __ _ __ ___
+# / -_) '  \/ _` / _(_-<
+# \___|_|_|_\__,_\__/__/
+# start emacs as a daemon (passes PATH properly vs. systemd service)
+if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
+    emacs --daemon
+fi
+
+# variables used by programs to default ot using emacs (vi as backup)
+export ALTERNATE_EDITOR="vi"
 export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
 
 # create the symbolic link to use for emacs
 ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
+
+#                 _        _
+#  __ _ _ ___ _ _| |_ __ _| |__
+# / _| '_/ _ \ ' \  _/ _` | '_ \
+# \__|_| \___/_||_\__\__,_|_.__/
+if [ -e $HOME/.config/.crontab ]; then
+    crontab $HOME/.config/.crontab
+fi

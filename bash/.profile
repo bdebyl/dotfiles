@@ -9,15 +9,13 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-uid=$(id -u)
-export XDG_RUNTIME_DIR="/run/user/$uid"
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export BROWSER="firefox"
-#  _               _
-# | |__   __ _ ___| |__  _ __ ___
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__
-# |_.__/ \__,_|___/_| |_|_|  \___|
-#
+
+#  _             _
+# | |__  __ _ __| |_  _ _ __
+# | '_ \/ _` (_-< ' \| '_/ _|
+# |_.__/\__,_/__/_||_|_| \__|
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
@@ -26,28 +24,18 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-#              _   _
-#  _ __   __ _| |_| |__
-# | '_ \ / _` | __| '_ \
-# | |_) | (_| | |_| | | |
-# | .__/ \__,_|\__|_| |_|
+#             _   _
+#  _ __  __ _| |_| |_
+# | '_ \/ _` |  _| ' \
+# | .__/\__,_|\__|_||_|
 # |_|
 # Set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
+if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
 fi
 
 # add gopath
-if [ -d "$HOME/go/bin" ] ; then
+if [ -d "$HOME/go/bin" ]; then
     export GOPATH="$HOME/go/bin"
     export PATH="$GOPATH:$PATH"
-fi
-
-
-#   ___ _ __ ___   __ _  ___ ___
-#  / _ \ '_ ` _ \ / _` |/ __/ __|
-# |  __/ | | | | | (_| | (__\__ \
-#  \___|_| |_| |_|\__,_|\___|___/
-if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
-   exec emacs --daemon
 fi

@@ -1,0 +1,5 @@
+# -*- mode: crontab -*-
+# name: entry
+# key: e
+# --
+${*} ${*} ${*} ${*} ${*} ${/bin/sh}
