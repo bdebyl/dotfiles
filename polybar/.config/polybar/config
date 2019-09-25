@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = filesystem memory cpu wlan eth battery date powermenu
+modules-right = mail filesystem memory cpu wlan eth battery date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -200,6 +200,12 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
+
+[module/mail]
+type = custom/script
+exec = echo ""
+exec-if = [ $(find ~/mail/ -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]
+interval = 5
 
 [module/powermenu]
 type = custom/menu
