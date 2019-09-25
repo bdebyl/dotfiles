@@ -72,6 +72,7 @@ fi
 # __ ____ _ _ _ ___
 # \ V / _` | '_(_-<
 #  \_/\__,_|_| /__/
+export NOTMUCH_CONFIG="$HOME/.config/.notmuch-config"
 if [ -f "$HOME/.bash_vars" ]; then
     # shellcheck source=/dev/null
     . "$HOME/.bash_vars"
