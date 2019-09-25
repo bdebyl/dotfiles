@@ -168,7 +168,7 @@ BEG and END (region to sort)."
 ;; Fill-column
 (add-hook-multi
  'auto-fill-mode
- '(markdown-mode-hook org-mode-hook))
+ '(markdown-mode-hook org-mode-hook fundamental-mode-hook))
 
 ;; Spell Check for Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
@@ -253,6 +253,11 @@ BEG and END (region to sort)."
           (lambda ()
             (set (make-local-variable 'company-backends) '(company-go))
             (company-mode)))
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-n") 'company-select-next)
+(define-key company-search-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-t") 'company-search-toggle-filtering)
 
 ;;               _                         _
 ;; __      _____| |__  _ __ ___   ___   __| | ___
@@ -374,7 +379,7 @@ BEG and END (region to sort)."
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
+    (company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
  '(sudo-edit-indicator-mode t)
  '(tab-width 4)

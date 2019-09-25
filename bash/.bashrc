@@ -91,7 +91,14 @@ fi
 # |  __/ | | | | | (_| | (__\__ \
 #  \___|_| |_| |_|\__,_|\___|___/
 #
-export ALTERNATE_EDITOR=""
+
+# start emacs as a daemon (passes PATH properly vs. systemd service)
+if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
+    emacs --daemon
+fi
+
+# variables used by programs to default ot using emacs (vi as backup)
+export ALTERNATE_EDITOR="vi"
 export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
 
