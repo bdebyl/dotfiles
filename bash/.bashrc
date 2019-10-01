@@ -7,16 +7,16 @@ case $- in
 esac
 
 # script for using a file as a stack for persistence
-# shellcheck source=.scripts/stackfile.sh
-. "$HOME/.scripts/stackfile.sh"
+# shellcheck source=.bash/stackfile.sh
+. "$HOME/.bash/stackfile.sh"
 
 # git info in bash prompt
-# shellcheck source=.scripts/gitprompt.sh
-. "$HOME/.scripts/gitprompt.sh"
+# shellcheck source=.bash/gitprompt.sh
+. "$HOME/.bash/gitprompt.sh"
 
 # keychain for gpg/ssh
-# shellcheck source=.scripts/keychain.sh
-. "$HOME/.scripts/keychain.sh"
+# shellcheck source=.bash/keychain.sh
+. "$HOME/.bash/keychain.sh"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
