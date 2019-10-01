@@ -2,3 +2,4 @@ mail/.msmtprc
 mail/.mutt/identity
 mail/.mutt/mailboxes
 mail/.offlineimaprc
+*.pyc

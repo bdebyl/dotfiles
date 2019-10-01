@@ -1,4 +1,8 @@
 [global]
+# icon
+icon_position = left
+icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+
 # rendering
 geometry = "512x2-32+32"
 font = Monospace 10
