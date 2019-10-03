@@ -8,13 +8,10 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-;;  _   _                 _____                    _
-;; | | | |___  ___ _ __  |_   _|_      _____  __ _| | _____
-;; | | | / __|/ _ \ '__|   | | \ \ /\ / / _ \/ _` | |/ / __|
-;; | |_| \__ \  __/ |      | |  \ V  V /  __/ (_| |   <\__ \
-;;  \___/|___/\___|_|      |_|   \_/\_/ \___|\__,_|_|\_\___/
-;;
-
+;;                     _                   _
+;;  _  _ ___ ___ _ _  | |___ __ _____ __ _| |__ ___
+;; | || (_-</ -_) '_| |  _\ V  V / -_) _` | / /(_-<
+;;  \_,_/__/\___|_|    \__|\_/\_/\___\__,_|_\_\/__/
 ;; Highlight line
 (add-hook 'after-init-hook 'global-hl-line-mode)
 
@@ -40,6 +37,14 @@
 ;; Recent file mode
 (recentf-mode 1)
 
+;; Fix for TRAMP to use ssh-agent
+(setenv "SSH_AUTH_SOCK" (concat (getenv "HOME") "/.ssh_auth_sock"))
+
+
+;;          _               _
+;;  _____ _| |_ ___ _ _  __(_)___ _ _  ___
+;; / -_) \ /  _/ -_) ' \(_-< / _ \ ' \(_-<
+;; \___/_\_\\__\___|_||_/__/_\___/_||_/__/
 ;; crontab-mode
 (add-to-list 'auto-mode-alist '("\\.crontab\\'" . crontab-mode))
 
@@ -48,18 +53,26 @@
 (add-to-list 'auto-mode-alist '("config\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\..*rc\\'" . conf-mode))
 
-;; Figlet default font (not custom-set-variable capable)
-(setq figlet-default-font "standard")
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.css$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.etlua$" . web-mode))
 
-;; Fix for TRAMP to use ssh-agent
-(setenv "SSH_AUTH_SOCK" (concat (getenv "HOME") "/.ssh_auth_sock"))
+;; jinja2-mode
+(add-to-list 'auto-mode-alist '("\\.j2$" . jinja2-mode))
 
-;;                 _                      _       __
-;;   ___ _   _ ___| |_ ___  _ __ ___   __| | ___ / _|___
-;;  / __| | | / __| __/ _ \| '_ ` _ \ / _` |/ _ \ |_/ __|
-;; | (__| |_| \__ \ || (_) | | | | | | (_| |  __/  _\__ \
-;;  \___|\__,_|___/\__\___/|_| |_| |_|\__,_|\___|_| |___/
-;;
+;; perl-mode
+(add-to-list 'auto-mode-alist '("\\.mc$" . perl-mode))
+
+;; yaml-mode
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+
+;;             _                _      __
+;;  __ _  _ __| |_ ___ _ __  __| |___ / _|___
+;; / _| || (_-<  _/ _ \ '  \/ _` / -_)  _(_-<
+;; \__|\_,_/__/\__\___/_|_|_\__,_\___|_| /__/
 (defun uniq-lines (beg end)
   "Unique lines in region.
 Called from a program, there are two arguments:
@@ -90,12 +103,12 @@ BEG and END (region to sort)."
   (interactive)
   (find-file user-init-file))
 
-;;                 _                  _
-;;   ___ _   _ ___| |_ ___  _ __ ___ | | _____ _   _ ___
-;;  / __| | | / __| __/ _ \| '_ ` _ \| |/ / _ \ | | / __|
-;; | (__| |_| \__ \ || (_) | | | | | |   <  __/ |_| \__ \
-;;  \___|\__,_|___/\__\___/|_| |_| |_|_|\_\___|\__, |___/
-;;                                             |___/
+
+;;             _             _
+;;  __ _  _ __| |_ ___ _ __ | |_____ _  _ ___
+;; / _| || (_-<  _/ _ \ '  \| / / -_) || (_-<
+;; \__|\_,_/__/\__\___/_|_|_|_\_\___|\_, /__/
+;;                                   |__/
 ;; Expand region
 (global-set-key (kbd "C-x +") 'er/expand-region)
 
@@ -115,30 +128,12 @@ BEG and END (region to sort)."
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
-;;                        _                              _
-;;   ___  _ __ __ _      (_) ___  _   _ _ __ _ __   __ _| |
-;;  / _ \| '__/ _` |_____| |/ _ \| | | | '__| '_ \ / _` | |
-;; | (_) | | | (_| |_____| | (_) | |_| | |  | | | | (_| | |
-;;  \___/|_|  \__, |    _/ |\___/ \__,_|_|  |_| |_|\__,_|_|
-;;            |___/    |__/
-(org-version)
-(require 'org-journal)
 
-;;                        _               _
-;;   ___  _ __ __ _      | |__  _ __ __ _(_)_ __
-;;  / _ \| '__/ _` |_____| '_ \| '__/ _` | | '_ \
-;; | (_) | | | (_| |_____| |_) | | | (_| | | | | |
-;;  \___/|_|  \__, |     |_.__/|_|  \__,_|_|_| |_|
-;;            |___/
-(require 'org-brain)
-
-;;
-;;                           _
-;;  ___ _ __ ___   __ _ _ __| |_ _ __   __ _ _ __ ___ _ __  ___
-;; / __| '_ ` _ \ / _` | '__| __| '_ \ / _` | '__/ _ \ '_ \/ __|
-;; \__ \ | | | | | (_| | |  | |_| |_) | (_| | | |  __/ | | \__ \
-;; |___/_| |_| |_|\__,_|_|   \__| .__/ \__,_|_|  \___|_| |_|___/
-;;                              |_|
+;;                    _
+;;  ____ __  __ _ _ _| |_ _ __  __ _ _ _ ___ _ _  ___
+;; (_-< '  \/ _` | '_|  _| '_ \/ _` | '_/ -_) ' \(_-<
+;; /__/_|_|_\__,_|_|  \__| .__/\__,_|_| \___|_||_/__/
+;;                       |_|
 (require 'smartparens-config)
 (add-hook-multi
  'smartparens-mode
@@ -152,17 +147,13 @@ BEG and END (region to sort)."
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 
-;;  _           _            _        _   _
-;; (_)_ __   __| | ___ _ __ | |_ __ _| |_(_) ___  _ __
-;; | | '_ \ / _` |/ _ \ '_ \| __/ _` | __| |/ _ \| '_ \
-;; | | | | | (_| |  __/ | | | || (_| | |_| | (_) | | | |
-;; |_|_| |_|\__,_|\___|_| |_|\__\__,_|\__|_|\___/|_| |_|
-;;
-;; Indentation guides
+;;  _         _         _        _   _
+;; (_)_ _  __| |___ _ _| |_ __ _| |_(_)___ _ _
+;; | | ' \/ _` / -_) ' \  _/ _` |  _| / _ \ ' \
+;; |_|_||_\__,_\___|_||_\__\__,_|\__|_\___/_||_|
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (defvaralias 'c-basic-offset 'tab-width)
 
-(add-to-list 'auto-mode-alist '("\\.mc$" . perl-mode))
 (add-hook 'perl-mode-hook
           '(lambda()
              (setq indent-tabs-mode 1)))
@@ -176,25 +167,22 @@ BEG and END (region to sort)."
 ;; Spell Check for Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
 
-;;
-;;                        _                  _
-;;  _   _  __ _ ___ _ __ (_)_ __  _ __   ___| |_ ___
-;; | | | |/ _` / __| '_ \| | '_ \| '_ \ / _ \ __/ __|
-;; | |_| | (_| \__ \ | | | | |_) | |_) |  __/ |_\__ \
-;;  \__, |\__,_|___/_| |_|_| .__/| .__/ \___|\__|___/
-;;  |___/                  |_|   |_|
-;;
+
+;;                    _                _
+;;  _  _ __ _ ____ _ (_)_ __ _ __  ___| |_
+;; | || / _` (_-< ' \| | '_ \ '_ \/ -_)  _|
+;;  \_, \__,_/__/_||_|_| .__/ .__/\___|\__|
+;;  |__/               |_|  |_|
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;;
-;;                    ___
-;;  _ __   ___ _ __  ( _ )
-;; | '_ \ / _ \ '_ \ / _ \
-;; | |_) |  __/ |_) | (_) |
-;; | .__/ \___| .__/ \___/
-;; |_|        |_|
-;;
+
+;;                  ___
+;;  _ __  ___ _ __ ( _ )
+;; | '_ \/ -_) '_ \/ _ \
+;; | .__/\___| .__/\___/
+;; |_|       |_|
+(require 'py-autopep8)
 (defun my-pep8 ()
   "run pep8 and jump to first message"
   (interactive)
@@ -222,19 +210,11 @@ BEG and END (region to sort)."
            (other-window 1)))
   )
 
-;;              _                          ___
-;;  _ _ _ _   _| |_ ___  _ __   ___ _ __  ( _ )
-;; /  _` | | | | __/ _ \| '_ \ / _ \ '_ \ / _ \
-;; | (_| | |_| | || (_) | |_) |  __/ |_) | (_) |
-;;  \__,_|\__,_|\__\___/| .__/ \___| .__/ \___/
-;;                      |_|        |_|
-(require 'py-autopep8)
 
-;;  _     _
-;; (_) __| | ___    _   ___ _ __ ___   _____  __
-;; | |/ _` |/ _ \ _| |_/ __| '_ ` _ \ / _ \ \/ /
-;; | | (_| | (_) |_   _\__ \ | | | | |  __/>  <
-;; |_|\__,_|\___/  |_| |___/_| |_| |_|\___/_/\_\
+;;  _    _       _
+;; (_)__| |___ _| |_ ____ __  _____ __
+;; | / _` / _ \_   _(_-< '  \/ -_) \ /
+;; |_\__,_\___/ |_| /__/_|_|_\___/_\_\
 (require 'smex)
 (require 'ido-vertical-mode)
 (ido-mode 1)
@@ -243,12 +223,10 @@ BEG and END (region to sort)."
 (smex-initialize)
 
 
-;;   ___ ___  _ __ ___  _ __   __ _ _ __  _   _
-;;  / __/ _ \| '_ ` _ \| '_ \ / _` | '_ \| | | |
-;; | (_| (_) | | | | | | |_) | (_| | | | | |_| |
-;;  \___\___/|_| |_| |_| .__/ \__,_|_| |_|\__, |
-;;                     |_|                |___/
-;;
+;;  __ ___ _ __  _ __  __ _ _ _ _  _
+;; / _/ _ \ '  \| '_ \/ _` | ' \ || |
+;; \__\___/_|_|_| .__/\__,_|_||_\_, |
+;;              |_|             |__/
 (require 'company)
 (require 'company-go)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -256,64 +234,33 @@ BEG and END (region to sort)."
           (lambda ()
             (set (make-local-variable 'company-backends) '(company-go))
             (company-mode)))
+(global-company-fuzzy-mode 1)  ;; company fuzzy matching
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-search-map (kbd "C-n") 'company-select-next)
 (define-key company-search-map (kbd "C-p") 'company-select-previous)
 (define-key company-search-map (kbd "C-t") 'company-search-toggle-filtering)
 
-;;               _                         _
-;; __      _____| |__  _ __ ___   ___   __| | ___
-;; \ \ /\ / / _ \ '_ \| '_ ` _ \ / _ \ / _` |/ _ \
-;;  \ V  V /  __/ |_) | | | | | | (_) | (_| |  __/
-;;   \_/\_/ \___|_.__/|_| |_| |_|\___/ \__,_|\___|
-;;
-(add-to-list 'auto-mode-alist '("\\.css$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.etlua$" . web-mode))
 
-;;    _ _        _       ____
-;;   (_|_)_ __  (_) __ _|___ \
-;;   | | | '_ \ | |/ _` | __) |
-;;   | | | | | || | (_| |/ __/
-;;  _/ |_|_| |_|/ |\__,_|_____|
-;; |__/       |__/
-(add-to-list 'auto-mode-alist '("\\.j2$" . jinja2-mode))
-
-;;      _ _              _
-;;   __| (_)_ __ ___  __| |
-;;  / _` | | '__/ _ \/ _` |
-;; | (_| | | | |  __/ (_| |
-;;  \__,_|_|_|  \___|\__,_|
-;;
-;;
-;; force dired to reuse dired buffer instead of opening a new one
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (define-key dired-mode-map (kbd "^")
-              (lambda () (interactive) (find-alternate-file "..")))))
-
-;;                        _                           _
-;;  _   _  __ _ _ __ ___ | |      _ __ ___   ___   __| | ___
-;; | | | |/ _` | '_ ` _ \| |_____| '_ ` _ \ / _ \ / _` |/ _ \
-;; | |_| | (_| | | | | | | |_____| | | | | | (_) | (_| |  __/
-;;  \__, |\__,_|_| |_| |_|_|     |_| |_| |_|\___/ \__,_|\___|
-;;  |___/
-;;
+;;                  _
+;;  _  _ __ _ _ __ | |
+;; | || / _` | '  \| |
+;;  \_, \__,_|_|_|_|_|
+;;  |__/
 (require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-hook 'yaml-mode-hook
           '(lambda ()
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-;;                                            _
-;;   ___  _ __ __ _       _ __ ___   ___   __| | ___
-;;  / _ \| '__/ _` |_____| '_ ` _ \ / _ \ / _` |/ _ \
-;; | (_) | | | (_| |_____| | | | | | (_) | (_| |  __/
-;;  \___/|_|  \__, |     |_| |_| |_|\___/ \__,_|\___|
-;;            |___/
-;;
+
+;;                                 _
+;;  ___ _ _ __ _ ___ _ __  ___  __| |___
+;; / _ \ '_/ _` |___| '  \/ _ \/ _` / -_)
+;; \___/_| \__, |   |_|_|_\___/\__,_\___|
+;;         |___/
+(org-version)
+(require 'org-journal)
+(require 'org-brain)
 (define-key global-map "\C-cc" 'org-capture)
 (setq org-capture-templates
       '(("t" "Todo" entry
@@ -321,11 +268,11 @@ BEG and END (region to sort)."
         ("j" "Journal" entry
          (file+datetree "~/org/journal.org") "* %?\nEntered on %U\n  %i\n  %a")))
 
-;;                 _                                 _
-;;   ___ _   _ ___| |_ ___  _ __ ___        ___  ___| |_
-;;  / __| | | / __| __/ _ \| '_ ` _ \ _____/ __|/ _ \ __|
-;; | (__| |_| \__ \ || (_) | | | | | |_____\__ \  __/ |_
-;;  \___|\__,_|___/\__\___/|_| |_| |_|     |___/\___|\__|
+
+;;             _                        _
+;;  __ _  _ __| |_ ___ _ __ ___ ___ ___| |_
+;; / _| || (_-<  _/ _ \ '  \___(_-</ -_)  _|
+;; \__|\_,_/__/\__\___/_|_|_|  /__/\___|\__|
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -382,7 +329,7 @@ BEG and END (region to sort)."
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (company-jedi crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
+    (company company-fuzzy company-jedi crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
  '(sudo-edit-indicator-mode t)
  '(tab-width 4)
