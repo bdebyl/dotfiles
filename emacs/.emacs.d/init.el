@@ -100,12 +100,6 @@ BEG and END (region to sort)."
           (add-hook hook function))
         hooks))
 
-(defun find-user-init-file ()
-  "Edit the 'user-init-file' in a current window"
-  (interactive)
-  (find-file user-init-file))
-
-
 ;;             _             _
 ;;  __ _  _ __| |_ ___ _ __ | |_____ _  _ ___
 ;; / _| || (_-<  _/ _ \ '  \| / / -_) || (_-<
@@ -118,13 +112,17 @@ BEG and END (region to sort)."
 (global-set-key (kbd "C-x '") 'enlarge-window)
 
 ;; Init file shortcut
-(global-set-key (kbd "C-c I") 'find-user-init-file)
+(global-set-key (kbd "C-c I") (lambda ()
+                                (interactive)
+                                (find-file user-init-file)))
 
 ;; Multiple Cursors
-(global-set-key (kbd "C-^") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
+
 
 ;; Show recent opened files
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
