@@ -230,19 +230,27 @@ BEG and END (region to sort)."
 ;; \__\___/_|_|_| .__/\__,_|_||_\_, |
 ;;              |_|             |__/
 (require 'company)
-(require 'company-go)
 (add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'go-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends) '(company-go))
-            (company-mode)))
-(global-company-fuzzy-mode 1)  ;; company fuzzy matching
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-search-map (kbd "C-n") 'company-select-next)
 (define-key company-search-map (kbd "C-p") 'company-select-previous)
 (define-key company-search-map (kbd "C-t") 'company-search-toggle-filtering)
 
+(add-to-list 'company-backends 'company-irony)
+(add-to-list 'company-backends '(company-irony-c-headers
+                                 company-irony
+                                 company-go))
+
+(add-hook-multi 'irony-mode
+                '(c++-mode-hook
+                  c-mode-hook
+                  objc-mode-hook))
+;; (add-hook 'c++-mode-hook 'irony-mode)
+;; (add-hook 'c-mode-hook 'irony-mode)
+;; (add-hook 'objc-mode-hook 'irony-mode)
+
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ;;                  _
 ;;  _  _ __ _ _ __ | |
@@ -303,6 +311,7 @@ BEG and END (region to sort)."
  '(rainbow-delimiters-depth-8-face ((t (:foreground "#bebebe"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "#ff6347"))))
  '(rainbow-delimiters-unmatched-face ((t (:foreground "#ff0000"))))
+ '(region ((t (:background "green" :foreground "black"))))
  '(shadow ((t (:foreground "grey60"))))
  '(smerge-refined-added ((t (:inherit smerge-refined-change :background "red"))))
  '(sp-pair-overlay-face ((t (:background "magenta"))))
@@ -331,7 +340,7 @@ BEG and END (region to sort)."
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (ansible ansible-doc ansible-vault company-shell company company-fuzzy company-jedi crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
+    (company-irony-c-headers company company-irony irony company-c-headers crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
  '(sudo-edit-indicator-mode t)
  '(tab-width 4)
