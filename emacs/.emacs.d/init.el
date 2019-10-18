@@ -100,12 +100,6 @@ BEG and END (region to sort)."
           (add-hook hook function))
         hooks))
 
-(defun find-user-init-file ()
-  "Edit the 'user-init-file' in a current window"
-  (interactive)
-  (find-file user-init-file))
-
-
 ;;             _             _
 ;;  __ _  _ __| |_ ___ _ __ | |_____ _  _ ___
 ;; / _| || (_-<  _/ _ \ '  \| / / -_) || (_-<
@@ -118,13 +112,17 @@ BEG and END (region to sort)."
 (global-set-key (kbd "C-x '") 'enlarge-window)
 
 ;; Init file shortcut
-(global-set-key (kbd "C-c I") 'find-user-init-file)
+(global-set-key (kbd "C-c I") (lambda ()
+                                (interactive)
+                                (find-file user-init-file)))
 
 ;; Multiple Cursors
-(global-set-key (kbd "C-^") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
+
 
 ;; Show recent opened files
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
@@ -339,7 +337,7 @@ BEG and END (region to sort)."
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
    (quote
-    (company-irony-c-headers company company-irony irony company-c-headers crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
+    (spice-mode ansible ansible-doc ansible-vault company-shell company company-jedi crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
  '(recentf-max-menu-items 25)
  '(sudo-edit-indicator-mode t)
  '(tab-width 4)
