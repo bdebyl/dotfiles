@@ -237,7 +237,6 @@ BEG and END (region to sort)."
 (define-key company-search-map (kbd "C-p") 'company-select-previous)
 (define-key company-search-map (kbd "C-t") 'company-search-toggle-filtering)
 
-(add-to-list 'company-backends 'company-irony)
 (add-to-list 'company-backends '(company-irony-c-headers
                                  company-irony
                                  company-go))

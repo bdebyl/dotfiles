@@ -1,27 +1,36 @@
-personal_ws-1.1 en 54 
+personal_ws-1.1 en 67 
 dynbmcintc
 stdout
 pacman
+melpa
+MELPA
 dlinkddns
 config
 Creds
 GitLab
 dev
 Vagrantfile
+libclang
 LaTeX
 VMs
+lastmod
 Artifactory
 uwsgi
 OpenPGP
+init
 VirtualBox
 LastPass
 Digi
+hideHeaderAndFooter
 dlink
 logrotate
 GPG
 tfvars
 nginx
 dlinklogftp
+libopencm
+contentCopyright
+emacs
 src
 OpenKeychain
 bolded
@@ -33,8 +42,11 @@ DynDNS
 Alimac's
 ssl
 ThinkPad
+IntelliSense
 logftp
+img
 Dremel
+ELPA
 Hostname
 thumbgallery
 hostmanager
@@ -47,6 +59,7 @@ systemd
 dynbmcsandbox
 deps
 conf
+cmake
 yml
 Workspaces
 terraform
