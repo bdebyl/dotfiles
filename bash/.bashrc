@@ -14,10 +14,6 @@ esac
 # shellcheck source=.bash/gitprompt.sh
 . "$HOME/.bash/gitprompt.sh"
 
-# keychain for gpg/ssh
-# shellcheck source=.bash/keychain.sh
-. "$HOME/.bash/keychain.sh"
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -77,27 +73,7 @@ if [ -f "$HOME/.bash_vars" ]; then
     . "$HOME/.bash_vars"
 fi
 
-
-#  ___ _ __  __ _ __ ___
-# / -_) '  \/ _` / _(_-<
-# \___|_|_|_\__,_\__/__/
-# start emacs as a daemon (passes PATH properly vs. systemd service)
-if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
-    emacs --daemon
-fi
-
 # variables used by programs to default ot using emacs (vi as backup)
 export ALTERNATE_EDITOR="vi"
 export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
-
-# create the symbolic link to use for emacs
-ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
-
-#                 _        _
-#  __ _ _ ___ _ _| |_ __ _| |__
-# / _| '_/ _ \ ' \  _/ _` | '_ \
-# \__|_| \___/_||_\__\__,_|_.__/
-if [ -e $HOME/.config/.crontab ]; then
-    crontab $HOME/.config/.crontab
-fi

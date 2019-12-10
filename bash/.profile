@@ -12,6 +12,31 @@
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export BROWSER="firefox"
 
+# create the symbolic link to use for emacs
+ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
+
+# keychain for gpg/ssh
+# shellcheck source=.bash/keychain.sh
+. "$HOME/.bash/keychain.sh"
+
+#             _   _
+#  _ __  __ _| |_| |_
+# | '_ \/ _` |  _| ' \
+# | .__/\__,_|\__|_||_|
+# |_|
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+#                 _        _
+#  __ _ _ ___ _ _| |_ __ _| |__
+# / _| '_/ _ \ ' \  _/ _` | '_ \
+# \__|_| \___/_||_\__\__,_|_.__/
+if [ -e $HOME/.config/.crontab ]; then
+    crontab $HOME/.config/.crontab
+fi
+
 #  _             _
 # | |__  __ _ __| |_  _ _ __
 # | '_ \/ _` (_-< ' \| '_/ _|
@@ -24,18 +49,16 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-#             _   _
-#  _ __  __ _| |_| |_
-# | '_ \/ _` |  _| ' \
-# | .__/\__,_|\__|_||_|
-# |_|
-# Set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-    export PATH="$HOME/bin:$PATH"
-fi
-
 # add gopath
 if [ -d "$HOME/go/bin" ]; then
     export GOPATH="$HOME/go/bin"
     export PATH="$GOPATH:$PATH"
+fi
+
+#  ___ _ __  __ _ __ ___
+# / -_) '  \/ _` / _(_-<
+# \___|_|_|_\__,_\__/__/
+# start emacs as a daemon (passes PATH properly vs. systemd service)
+if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
+    emacs --daemon
 fi
