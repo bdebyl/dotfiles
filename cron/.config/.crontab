@@ -1,2 +1,2 @@
 * * * * * /usr/bin/offlineimap -o -u syslog
-5 * * * * /usr/bin/vdirsyncer sync
+5 * * * * $HOME/.config/vdirsyncer/.venv/bin/vdirsyncer sync

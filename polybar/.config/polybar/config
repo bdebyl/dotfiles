@@ -204,7 +204,7 @@ animation-discharging-framerate = 750
 [module/mail]
 type = custom/script
 exec = echo ""
-exec-if = [ $(find ~/mail/ -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]
+exec-if = [ $(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]
 interval = 5
 
 [module/powermenu]
