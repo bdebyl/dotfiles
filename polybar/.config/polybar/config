@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = mail filesystem memory cpu wlan eth battery date powermenu
+modules-right = mail filesystem memory cpu wlan eth battery pulseaudio date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -122,7 +122,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-;format-connected-underline = #9f78e1
+format-connected-underline = #55aa55
 label-connected = %essid%
 
 format-disconnected =
@@ -175,14 +175,14 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
+format-charging-underline = #b6cc0c
 
 format-discharging = <animation-discharging> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = #ff7065
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = ${self.format-charging-underline}
+format-full-underline = #2993ff
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -200,6 +200,50 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = false
+
+interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume =  <label-volume>
+format-volume-underline = #c3fec5
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-muted = <label-muted> muted
+format-muted-underline = #666
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+label-muted = 
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+; ramp-volume-0 = 🔈
+; ramp-volume-1 = 🔉
+; ramp-volume-2 =e 🔊
+
+; Right and Middle click (unreleased)
+click-right = exec pavucontrol
+; click-middle =
 
 [module/mail]
 type = custom/script
