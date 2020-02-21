@@ -77,3 +77,7 @@ fi
 export ALTERNATE_EDITOR="vi"
 export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
+
+# keychain for gpg/ssh
+# shellcheck source=.bash/keychain.sh
+. "$HOME/.bash/keychain.sh"

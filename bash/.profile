@@ -15,10 +15,6 @@ export BROWSER="firefox"
 # create the symbolic link to use for emacs
 ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
 
-# keychain for gpg/ssh
-# shellcheck source=.bash/keychain.sh
-. "$HOME/.bash/keychain.sh"
-
 #             _   _
 #  _ __  __ _| |_| |_
 # | '_ \/ _` |  _| ' \
