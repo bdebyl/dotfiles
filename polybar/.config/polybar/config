@@ -131,11 +131,11 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = ▁
-ramp-signal-1 = ▂
-ramp-signal-2 = ▃
-ramp-signal-3 = ▄
-ramp-signal-4 = ▅
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 
 ramp-signal-foreground = ${colors.foreground-alt}
 
@@ -216,7 +216,7 @@ interval = 5
 ;   <label-volume> (default)
 ;   <ramp-volume>
 ;   <bar-volume>
-format-volume =  <label-volume>
+format-volume =  <label-volume>
 format-volume-underline = #c3fec5
 ; Available tags:
 ;   <label-muted> (default)
@@ -242,7 +242,7 @@ label-muted-foreground = #666
 ; ramp-volume-2 =e 🔊
 
 ; Right and Middle click (unreleased)
-click-right = exec pavucontrol
+; click-right =
 ; click-middle =
 
 [module/mail]
