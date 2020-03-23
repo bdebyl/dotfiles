@@ -167,7 +167,7 @@ bindsym $mod+r mode "resize"
 # Custom configurations
 bindsym --release $mod+Ctrl+l  exec --no-startup-id slock
 bindsym           Print        exec --no-startup-id flameshot gui
-bindsym           $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video0
+bindsym           $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video2
 bindsym           $mod+P       exec --no-startup-id passmenu
 bindsym           $mod+Shift+f exec --no-startup-id firefox
 

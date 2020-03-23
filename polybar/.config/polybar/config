@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = mail filesystem memory cpu wlan eth battery pulseaudio date powermenu
+modules-right = mail filesystem memory cpu wlan eth battery pulseaudio backlight date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -204,7 +204,7 @@ animation-discharging-framerate = 750
 [module/pulseaudio]
 type = internal/pulseaudio
 
-sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+sink = [ $(pactl list sinks | sed -n '/RUNNING/{:start /alsa_output/!{N;b start};//p}' | sed -n 's/.*\(alsa_output.*$\).*/\1/p') ]
 
 ; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
 ; Default: true
@@ -250,6 +250,36 @@ type = custom/script
 exec = echo ""
 exec-if = [ $(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]
 interval = 5
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+enable-scroll = true
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = %{A4:~/.scripts/backlight/chgbl.sh -i:}%{A5:~/.scripts/backlight/chgbl.sh -d:}<label>%{A}%{A}
+format-underline = #fff
+
+; Available tokens:
+;   %percentage% (default)
+label =  %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
 
 [module/powermenu]
 type = custom/menu
