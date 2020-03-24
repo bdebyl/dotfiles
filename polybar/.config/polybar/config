@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = mail filesystem memory cpu wlan eth battery pulseaudio backlight date powermenu
+modules-right = corona mail filesystem memory cpu wlan eth battery pulseaudio backlight date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -244,6 +244,11 @@ label-muted-foreground = #666
 ; Right and Middle click (unreleased)
 ; click-right =
 ; click-middle =
+
+[module/corona]
+type = custom/script
+exec = curl -s https://corona-stats.online/us | sed -n 's/\x1b\[[0-9;]*m//g;s/[║\ ]//g;/US/p' | awk -F'│' '{printf "%{F#dff522} %s%{F-} (%{F#98a80f}%s%{F-}) %{F#f53022} %s%{F-} (%{F#0a81f5}%s%%%{F-})", $3, $6, $4, $5}'
+interval = 3600
 
 [module/mail]
 type = custom/script
