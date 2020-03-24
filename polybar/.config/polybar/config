@@ -247,7 +247,7 @@ label-muted-foreground = #666
 
 [module/corona]
 type = custom/script
-exec = curl -s https://corona-stats.online/us | sed -n 's/\x1b\[[0-9;]*m//g;s/[║\ ]//g;/US/p' | awk -F'│' '{printf "%{F#dff522} %s%{F-} (%{F#98a80f}%s%{F-}) %{F#f53022} %s%{F-} (%{F#0a81f5}%s%%%{F-})", $3, $6, $4, $5}'
+exec = curl -s https://corona-stats.online/?source=2 | sed -n 's/\x1b\[[0-9;]*m//g;s/[║\ ]//g;/USA/p' | awk -F'│' '{printf "%{F#dff522} %s%{F-} (%{F#98a80f}%s%{F-}) %{F#f53022} %s%{F-} (%{F#0a81f5}%s%{F-})", $3, $4, $5, $6}'
 interval = 3600
 
 [module/mail]
