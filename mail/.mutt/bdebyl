@@ -1,0 +1,7 @@
+set from            = "Bastian de Byl <bastian@bdebyl.net>"
+set pgp_default_key = 0xADAA54FC
+set sendmail        = "/usr/bin/msmtp -a bdebyl"
+set spoolfile       = "+bdebyl/INBOX"
+set record          = "+bdebyl/Sent Items"
+set postponed       = "+bdebyl/Drafts"
+set trash           = "+bdebyl/Trash"

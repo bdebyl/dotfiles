@@ -6,22 +6,19 @@ set sort_re
 
 # mail folders
 unset record
-set mbox_type = Maildir
-set sendmail  = /usr/bin/msmtp
-set folder    = "~/mail"
-set spoolfile = "+INBOX"
-set record    = "+Sent Items"
-set postponed = "+Drafts"
-source "~/.mutt/mailboxes"
-
+set envelope_from
+set folder     = "~/mail/"
+set mail_check = 0
+set mbox_type  = Maildir
 # trash folder
 unset       confirmappend
-folder-hook . set trash="=Trash"
+
+source "~/.mutt/mailboxes"
+macro index <F5> 'source ~/.mutt/bdebyl!'
+macro index <F6> 'source ~/.mutt/skudakrennsport!'
+folder-hook 'bdebyl' 'source ~/.mutt/bdebyl'
+folder-hook 'skudakrennsport' 'source ~/.mutt/skudakrennsport'
 folder-hook trash$ unset trash
-
-# identity
-source "~/.mutt/identity"
-
 # cryptography
 source "~/.mutt/gpg"
 
@@ -51,7 +48,7 @@ hdr_order from: to: cc: date: subject: # and in this order
 # Sidebar mappings
 set sidebar_format        = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
 set sidebar_next_new_wrap = yes
-set sidebar_short_path    = yes
+set sidebar_short_path    = no
 set sidebar_visible       = yes
 set sidebar_width         = 20
 bind index,pager \Co sidebar-open

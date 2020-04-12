@@ -1,0 +1,6 @@
+set from      = "Bastian de Byl <bastian@skudakrennsport.com>"
+set sendmail  = "/usr/bin/msmtp -a skudakrennsport"
+set spoolfile = "+skudakrennsport/INBOX"
+set record    = "+skudakrennsport/Sent Items"
+set postponed = "+skudakrennsport/Drafts"
+set trash     = "+skudakrennsport/Trash"
