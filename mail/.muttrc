@@ -3,6 +3,7 @@ set index_format = "%4C %Z %[%b %d %H:%M] %-15.15L (%?l?%4l&%4c?) %s"
 set sort         = threads
 set sort_aux     = reverse-last-date-received
 set sort_re
+set mailcap_path = ~/.mutt/mailcap
 
 # mail folders
 unset record
@@ -50,7 +51,7 @@ set sidebar_format        = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
 set sidebar_next_new_wrap = yes
 set sidebar_short_path    = no
 set sidebar_visible       = yes
-set sidebar_width         = 20
+set sidebar_width         = 28
 bind index,pager \Co sidebar-open
 bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
