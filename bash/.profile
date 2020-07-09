@@ -58,3 +58,5 @@ fi
 if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
     emacs --daemon
 fi
+
+export QSYS_ROOTDIR="/home/bdebyl/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/19.1/quartus/sopc_builder/bin"
