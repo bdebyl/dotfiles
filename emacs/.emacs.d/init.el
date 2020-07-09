@@ -237,7 +237,8 @@ BEG and END (region to sort)."
 
 (add-to-list 'company-backends '(company-irony-c-headers
                                  company-irony
-                                 company-go))
+                                 company-go
+                                 company-web-html))
 
 (add-hook-multi 'irony-mode
                 '(c++-mode-hook

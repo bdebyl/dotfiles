@@ -22,7 +22,7 @@ ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
 # |_|
 # Set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
-    export PATH="$HOME/bin:$PATH"
+    export PATH="/opt/altera/19.1/quartus/bin:$HOME/bin:$PATH"
 fi
 
 #                 _        _
@@ -47,8 +47,8 @@ fi
 
 # add gopath
 if [ -d "$HOME/go/bin" ]; then
-    export GOPATH="$HOME/go/bin"
-    export PATH="$GOPATH:$PATH"
+    export GOPATH="$HOME/go"
+    export PATH="$GOPATH/bin:$PATH"
 fi
 
 #  ___ _ __  __ _ __ ___
@@ -59,4 +59,4 @@ if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
     emacs --daemon
 fi
 
-export QSYS_ROOTDIR="/home/bdebyl/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/19.1/quartus/sopc_builder/bin"
+export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/19.1/quartus/sopc_builder/bin"

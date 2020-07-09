@@ -3,11 +3,13 @@
 
 ## keychain
 KEYFILE="$HOME/.keys"
+KEYFILEGPG="$HOME/.keys-gpg"
 if type keychain &>/dev/null; then
     # check for keyfile
-    if [ -f $KEYFILE ]; then
+    if [ -f "$KEYFILE" ] || [ -f "$KEYFILEGPG" ]; then
         # initialize keychain
-        keychain $( cat $KEYFILE ) 2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
+        [ -f "$KEYFILE" ] && keychain --agents ssh --eval "$( cat $KEYFILE )" 2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
+        [ -f "$KEYFILEGPG" ] && keychain --agents gpg --eval "$( cat $KEYFILEGPG )" 2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
         # load keychain environment
         [ -f "$HOME/.keychain/$HOSTNAME-sh" ] \
             && . "$HOME/.keychain/$HOSTNAME-sh"
@@ -39,13 +41,13 @@ else
         # set file name for env file
         GPG_FILE="$HOME/.gpg-agent-info"
         # check that env file exists
-        if [ -f $GPG_FILE ] && kill -0 $(cut -d: -f2 $GPG_FILE) 2>/dev/null; then
+        if [ -f "$GPG_FILE" ] && kill -0 "$(cut -d: -f2 $GPG_FILE)" 2>/dev/null; then
             # get pid from file
-            GPG_AGENT_INFO=$(cut -d= -f2 $GPG_FILE)
+            GPG_AGENT_INFO="$(cut -d= -f2 "$GPG_FILE")"
         else
             # start gpg-agent
             # TODO - investigate use of 'enable-ssh-support' here
-            eval $(gpg-agent --daemon --write-env-file $GPG_FILE)
+            eval "$(gpg-agent --daemon --write-env-file "$GPG_FILE")"
         fi
         export GPG_AGENT_INFO
         echo "gpg-agent - running $GPG_AGENT_INFO"
