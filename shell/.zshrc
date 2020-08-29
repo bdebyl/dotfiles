@@ -49,8 +49,8 @@ export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
 
 # keychain for gpg/ssh
-KEYFILE="$HOME/.keys"
-KEYFILEGPG="$HOME/.keys-gpg"
+KEYFILE="$HOME/.config/.keys"
+KEYFILEGPG="$HOME/.config/.keys-gpg"
 if type keychain &>/dev/null; then
     # check for keyfile
     if [ -f "$KEYFILE" ] || [ -f "$KEYFILEGPG" ]; then
