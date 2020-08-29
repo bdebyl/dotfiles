@@ -10,6 +10,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias ls='ls -lah --color=auto --group-directories-first'
     alias rgrep='grep -r'
+    alias rm='rm -v'
 fi
 
 alias mv='mv --verbose'

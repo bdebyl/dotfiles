@@ -117,8 +117,8 @@ BEG and END (region to sort)."
                                 (find-file user-init-file)))
 
 ;; Multiple Cursors
-(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
-(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "<M-down>") 'mc/mark-next-like-this)
+(global-set-key (kbd "<M-up>") 'mc/mark-previous-like-this)
 
 
 ;; Show recent opened files
@@ -293,6 +293,7 @@ BEG and END (region to sort)."
  '(font-lock-string-face ((t (:foreground "#00afd7"))))
  '(font-lock-variable-name-face ((t (:foreground "#a1c454"))))
  '(highlight ((t (:background "#5fd7d7"))))
+ '(highlight-indent-guides-character-face ((t (:foreground "color-244"))))
  '(hl-line ((t (:background "#4d4d4d"))))
  '(linum ((t (:foreground "#00cd00"))))
  '(magit-reflog-commit ((t (:foreground "#005500"))))
@@ -320,14 +321,14 @@ BEG and END (region to sort)."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(backup-directory-alist (\` (("." . "~/.saves"))))
+ '(backup-directory-alist `(("." . "~/.saves")))
  '(company-echo-delay 0 t)
  '(company-idle-delay 0.3)
  '(company-tooltip-limit 20)
  '(css-indent-offset 2)
  '(fill-column 80)
  '(highlight-indent-guides-auto-enabled nil)
- '(highlight-indent-guides-method (quote character))
+ '(highlight-indent-guides-method 'character)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(indent-tabs-mode nil)
@@ -337,8 +338,7 @@ BEG and END (region to sort)."
  '(org-journal-dir "~/org/journal/")
  '(org-journal-file-format "%Y/%m/%d.org")
  '(package-selected-packages
-   (quote
-    (browse-kill-ring edit-indirect irony spice-mode ansible ansible-doc ansible-vault company-shell company company-jedi crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible)))
+   '(edit-indirect irony spice-mode ansible ansible-doc ansible-vault company-shell company company-jedi crontab-mode company-terraform groovy-mode terraform-mode web-mode-edit-element ido-vertical-mode smex org-brain yasnippet-snippets org-journal whitespace-cleanup-mode git-commit flymd yaml-mode web-mode tablist sudo-edit smartparens seq rainbow-delimiters pkg-info pep8 nginx-mode multiple-cursors mmm-mode markdown-mode magit let-alist latex-preview-pane json-mode jinja2-mode highlight-indent-guides figlet expand-region dockerfile-mode ctable concurrent company-web company-lua company-go company-ghci company-ghc company-ansible))
  '(recentf-max-menu-items 25)
  '(sudo-edit-indicator-mode t)
  '(tab-width 4)

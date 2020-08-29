@@ -1,7 +1,54 @@
-#/usr/bin/env bash
-# MFL's bash profile config for keychain, pgp-agent, and ssh-agent
+#!/bin/zsh
+# Enable git in prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+# RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats ' %F{red}(%b)'
+zstyle ':vcs_info:*' enable git
 
-## keychain
+# Enable colors and change prompt
+autoload -U colors && colors
+PS1="%F{231}%n%F{green}@%F{blue}%M%{$reset_color%}: %F{yellow}%~%{$reset_color%}\$vcs_info_msg_0_%{$reset_color%} $%b "
+#PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\h: \[\$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] \$ "
+setopt autocd extendedglob nomatch
+stty stop undef
+bindkey -e
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.cache/histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+if [ -f "$HOME/.config/aliasrc" ]; then
+    . "$HOME/.config/aliasrc"
+fi
+
+# The following lines were added by compinstall
+autoload -Uz compinit
+
+# zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' menu select
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+# zstyle :compinstall filename '/home/bastian/.zshrc'
+zmodload zsh/complist
+
+compinit
+_comp_options+=(globdots)
+
+# Load syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+# fix for gpg agent prompt
+export GPG_TTY=$(tty)
+
+# variables used by programs to default ot using emacs (vi as backup)
+export ALTERNATE_EDITOR="vi"
+export EDITOR="emacsclient -nw"
+export VISUAL="emacsclient -nw"
+
+# keychain for gpg/ssh
 KEYFILE="$HOME/.keys"
 KEYFILEGPG="$HOME/.keys-gpg"
 if type keychain &>/dev/null; then

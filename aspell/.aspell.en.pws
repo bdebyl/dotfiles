@@ -1,4 +1,4 @@
-personal_ws-1.1 en 93 
+personal_ws-1.1 en 96 
 Alimac's
 Ansible
 Artifactory
@@ -26,6 +26,7 @@ OpenPGP
 OpenSSL
 PULLDOWN
 PULLUP
+Pasanen
 STM
 Systick
 ThinkPad
@@ -56,6 +57,7 @@ dynbmcintc
 dynbmcprod
 dynbmcsandbox
 emacs
+eng
 gnupg
 gpg
 hideHeaderAndFooter
@@ -79,6 +81,7 @@ oci
 openkeychain
 pacman
 preloading
+sargo
 src
 ssl
 stdout

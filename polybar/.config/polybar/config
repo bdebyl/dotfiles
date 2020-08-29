@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = mail corona filesystem memory cpu wlan eth battery pulseaudio date powermenu
+modules-right = mail filesystem memory cpu wlan eth battery pulseaudio date powermenu
 
 tray-position = right
 tray-padding = 0

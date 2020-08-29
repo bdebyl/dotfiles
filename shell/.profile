@@ -13,7 +13,7 @@ export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export BROWSER="firefox"
 
 # create the symbolic link to use for emacs
-ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
+# ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
 
 #             _   _
 #  _ __  __ _| |_| |_
@@ -33,17 +33,17 @@ if [ -e $HOME/.config/.crontab ]; then
     crontab $HOME/.config/.crontab
 fi
 
-#  _             _
-# | |__  __ _ __| |_  _ _ __
-# | '_ \/ _` (_-< ' \| '_/ _|
-# |_.__/\__,_/__/_||_|_| \__|
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-        # shellcheck source=.bashrc
-        . "$HOME/.bashrc"
-    fi
-fi
+# #  _             _
+# # | |__  __ _ __| |_  _ _ __
+# # | '_ \/ _` (_-< ' \| '_/ _|
+# # |_.__/\__,_/__/_||_|_| \__|
+# if [ -n "$BASH_VERSION" ]; then
+#     # include .bashrc if it exists
+#     if [ -f "$HOME/.bashrc" ]; then
+#         # shellcheck source=.bashrc
+#         . "$HOME/.bashrc"
+#     fi
+# fi
 
 # add gopath
 if [ -d "$HOME/go/bin" ]; then

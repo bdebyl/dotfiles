@@ -2,3 +2,4 @@ mail/.offlineimaprc filter=git-crypt diff=git-crypt
 mail/.msmtprc filter=git-crypt diff=git-crypt
 mail/.mutt/bdebyl filter=git-crypt diff=git-crypt
 mail/.mutt/skudakrennsport filter=git-crypt diff=git-crypt
+git/.config/git/config filter=git-crypt diff=git-crypt
