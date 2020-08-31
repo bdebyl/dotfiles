@@ -21,8 +21,14 @@ HISTFILE=~/.cache/histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
+# Load aliases
 if [ -f "$HOME/.config/aliasrc" ]; then
     . "$HOME/.config/aliasrc"
+fi
+
+# Load custom shell vars
+if [ -f "$HOME/.config/varsrc" ]; then
+    . "$HOME/.config/varsrc"
 fi
 
 # The following lines were added by compinstall
@@ -38,7 +44,7 @@ compinit
 _comp_options+=(globdots)
 
 # Load syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # fix for gpg agent prompt
 export GPG_TTY=$(tty)
