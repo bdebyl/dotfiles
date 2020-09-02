@@ -1,3 +1,12 @@
+if (has("autocmd") && !has("gui_running"))
+augroup colorset
+autocmd!
+let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+augroup END
+endif
+
+colorscheme onedark
 syntax on
 
 " Remove trailing whitespace on save
@@ -12,31 +21,12 @@ set number relativenumber
 " Autocompletion in lower menu
 set wildmenu
 set wildmode=longest:list,full
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 " Automatically change directory to open file (buffer)
 set autochdir
 
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
-endif
-
-" Plugged
-call plug#begin('~/.vim/plugged')
-
-Plug 'jiangmiao/auto-pairs'
-Plug 'joshdick/onedark.vim'
-Plug 'sirver/UltiSnips' | Plug 'honza/vim-snippets'
-Plug 'xavierd/clang_complete'
-
-call plug#end()
-
-colorscheme onedark
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 
@@ -63,9 +53,7 @@ set concealcursor=vin
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
 " The single one that works with clang_complete
-let g:clang_snippets_engine='ultisnips'
+let g:clang_snippets_engine='clang_complete'
 
 " Allow Ctrl-Tab to go to next snippet completion field or argument
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+inoremap <silent> <buffer> <C-s> <C-o>:python updateSnips()<CR>
