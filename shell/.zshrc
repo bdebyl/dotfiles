@@ -62,9 +62,9 @@ _comp_options+=(globdots)
 export GPG_TTY=$(tty)
 
 # variables used by programs to default ot using emacs (vi as backup)
-export ALTERNATE_EDITOR="vi"
-export EDITOR="emacsclient -nw"
-export VISUAL="emacsclient -nw"
+export ALTERNATE_EDITOR="emacsclient -nw"
+export EDITOR="vim"
+export VISUAL="vim"
 
 # zsh ssh-agent persistence
 . $HOME/.local/share/zsh/plugins/ssh-agent.plugin.zsh
