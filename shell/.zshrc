@@ -14,7 +14,13 @@ PS1="%F{231}%n%F{green}@%F{blue}%M%{$reset_color%}: %F{yellow}%~%{$reset_color%}
 #PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\h: \[\$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] \$ "
 setopt autocd extendedglob nomatch
 stty stop undef
+
+# Default keybindings
 bindkey -e
+
+# Use bash word style to fix oddities (i.e. backwards word killing)
+autoload -U select-word-style
+select-word-style bash
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.cache/histfile
