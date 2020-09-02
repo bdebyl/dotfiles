@@ -1,3 +1,5 @@
-mail/.mutt/mailboxes
-*.pyc
 **/.venv
+*.pyc
+.VimballRecord
+.netrwhist
+mail/.mutt/mailboxes
