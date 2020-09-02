@@ -67,7 +67,9 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 # zsh ssh-agent persistence
-. $HOME/.local/share/zsh/plugins/ssh-agent.plugin.zsh
+if [ -f "$HOME/.local/share/zsh/plugins/ssh-agents.plugin.zsh" ]; then
+    . $HOME/.local/share/zsh/plugins/ssh-agent.plugin.zsh
+fi
 
 # keychain for gpg/ssh
 KEYFILE="$HOME/.config/.keys"
