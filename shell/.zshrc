@@ -126,6 +126,3 @@ else
         echo "gpg-agent - not available!?"
     fi
 fi
-
-# create the symbolic link to use for emacs
-ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
