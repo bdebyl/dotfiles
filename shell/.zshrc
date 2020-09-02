@@ -1,5 +1,11 @@
 #!/bin/zsh
-# Enable git in prompt
+
+# if not running interactively, don't do anything
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -27,8 +33,14 @@ HISTFILE=~/.cache/histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
+# Load aliases
 if [ -f "$HOME/.config/aliasrc" ]; then
     . "$HOME/.config/aliasrc"
+fi
+
+# Load custom shell vars
+if [ -f "$HOME/.config/varsrc" ]; then
+    . "$HOME/.config/varsrc"
 fi
 
 # The following lines were added by compinstall
@@ -44,19 +56,25 @@ compinit
 _comp_options+=(globdots)
 
 # Load syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # fix for gpg agent prompt
 export GPG_TTY=$(tty)
 
 # variables used by programs to default ot using emacs (vi as backup)
-export ALTERNATE_EDITOR="vi"
-export EDITOR="emacsclient -nw"
-export VISUAL="emacsclient -nw"
+export ALTERNATE_EDITOR="emacsclient -nw"
+export EDITOR="vim"
+export VISUAL="vim"
+
+# zsh ssh-agent persistence
+if [ -f "$HOME/.local/share/zsh/plugins/ssh-agents.plugin.zsh" ]; then
+    . $HOME/.local/share/zsh/plugins/ssh-agent.plugin.zsh
+fi
 
 # keychain for gpg/ssh
 KEYFILE="$HOME/.config/.keys"
 KEYFILEGPG="$HOME/.config/.keys-gpg"
+
 if type keychain &>/dev/null; then
     # check for keyfile
     if [ -f "$KEYFILE" ] || [ -f "$KEYFILEGPG" ]; then
