@@ -1,5 +1,11 @@
 #!/bin/zsh
-# Enable git in prompt
+
+# if not running interactively, don't do anything
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -60,9 +66,13 @@ export ALTERNATE_EDITOR="vi"
 export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
 
+# zsh ssh-agent persistence
+. $HOME/.local/share/zsh/plugins/ssh-agent.plugin.zsh
+
 # keychain for gpg/ssh
 KEYFILE="$HOME/.config/.keys"
 KEYFILEGPG="$HOME/.config/.keys-gpg"
+
 if type keychain &>/dev/null; then
     # check for keyfile
     if [ -f "$KEYFILE" ] || [ -f "$KEYFILEGPG" ]; then
@@ -114,3 +124,6 @@ else
         echo "gpg-agent - not available!?"
     fi
 fi
+
+# create the symbolic link to use for emacs
+ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"
