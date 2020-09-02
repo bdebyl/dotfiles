@@ -34,12 +34,19 @@ endif
 " Plugged
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 Plug 'sirver/UltiSnips' | Plug 'honza/vim-snippets'
 Plug 'bdebyl/clang_complete'
 
 call plug#end()
+
+nnoremap <silent> <C-o> :Buffers<CR>
+nnoremap <silent> <C-p> :Files<CR>
 
 colorscheme onedark
 let g:airline#extensions#tabline#enabled = 1
@@ -74,3 +81,7 @@ let g:clang_snippets_engine='ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:terraform_align=1
+
+let $FZF_DEFAULT_COMMAND='find ~ -type f -not -path "*.git*"'
