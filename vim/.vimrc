@@ -46,7 +46,8 @@ Plug 'bdebyl/clang_complete'
 call plug#end()
 
 nnoremap <silent> <C-o> :Buffers<CR>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :let $FZF_DEFAULT_COMMAND='find . -type f -not -path "*.git*"' <bar> Files<CR>
+nnoremap <silent> <C-f> :let $FZF_DEFAULT_COMMAND='find ~ -type f -not -path "*.git*"' <bar> Files<CR>
 
 colorscheme onedark
 let g:airline#extensions#tabline#enabled = 1
@@ -84,4 +85,3 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:terraform_align=1
 
-let $FZF_DEFAULT_COMMAND='find ~ -type f -not -path "*.git*"'
