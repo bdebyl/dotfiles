@@ -8,7 +8,7 @@ PACKAGES=$(shell /bin/bash -c 'ls -d */')
 
 stow:
 	@echo "Stowing packages: [${PACKAGES}]"
-	@stow --ignore='^.*(bash|\.git).*$$' --verbose=1 ${PACKAGES}
+	@stow --no-folding --ignore='^.*(bash|\.git).*$$' --verbose=1 ${PACKAGES}
 	@echo "Done!"
 
 delete:
