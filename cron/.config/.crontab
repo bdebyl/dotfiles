@@ -1,3 +1,2 @@
 * * * * * /usr/bin/offlineimap -o -u syslog
-*/5 * * * * $HOME/.config/vdirsyncer/.venv/bin/vdirsyncer sync
-* * * * * if [ $(find $HOME/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]; then XDG_RUNTIME_DIR=/run/user/$(id -u) && notify-send -u normal "Mail" "New mail"; fi
+*/5 * * * * export XDG_RUNTIME_DIR=/run/user/$(id -u) && if ! $HOME/.config/vdirsyncer/.venv/bin/vdirsyncer sync; then notify-send -u critical 'Calendar' 'Calendar failed to synchronize!'; else notify-send -u low 'Calendar' 'Calendar synced'; fi

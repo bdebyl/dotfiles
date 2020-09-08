@@ -80,8 +80,10 @@ let g:clang_snippets_engine='ultisnips'
 
 " Allow Ctrl-Tab to go to next snippet completion field or argument
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 let g:terraform_align=1
 
+let g:AutoPairsShortcutFastWrap = '<c-e>'
+let g:AutoPairsShortcutBackInsert = '<c-b>'
