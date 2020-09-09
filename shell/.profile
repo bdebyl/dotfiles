@@ -48,13 +48,3 @@ if [ -d "$HOME/go/bin" ]; then
     export GOPATH="$HOME/go"
     export PATH="$GOPATH/bin:$PATH"
 fi
-
-#  ___ _ __  __ _ __ ___
-# / -_) '  \/ _` / _(_-<
-# \___|_|_|_\__,_\__/__/
-# start emacs as a daemon (passes PATH properly vs. systemd service)
-if [ ! "$(pgrep -f "emacs --daemon")" ] ; then
-    emacs --daemon
-fi
-
-export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/19.1/quartus/sopc_builder/bin"
