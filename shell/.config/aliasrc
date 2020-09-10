@@ -44,3 +44,9 @@ alias ikhal="$HOME/.config/khal/.venv/bin/ikhal"
 alias khal="$HOME/.config/khal/.venv/bin/khal"
 
 alias vimrc="vim $HOME/.vimrc"
+
+# git
+alias checkout="git checkout"
+alias push="git push"
+alias commit="git commit"
+alias pull="git pull"

@@ -36,7 +36,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf.vim'
-Plug 'plasticboy/vim-markdown'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
