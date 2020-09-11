@@ -1,2 +1,2 @@
 * * * * * /usr/bin/offlineimap -o -u syslog
-*/5 * * * * export XDG_RUNTIME_DIR=/run/user/$(id -u) && if ! $HOME/.config/vdirsyncer/.venv/bin/vdirsyncer sync; then notify-send -u critical 'Calendar' 'Calendar failed to synchronize!'; else notify-send -u low 'Calendar' 'Calendar synced'; fi
+*/5 * * * * export XDG_RUNTIME_DIR=/run/user/$(id -u) && if ! $HOME/.config/vdirsyncer/.venv/bin/vdirsyncer sync; then notify-send -u critical 'Calendar' 'Calendar failed to synchronize!'; fi
