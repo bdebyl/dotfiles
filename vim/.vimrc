@@ -1,5 +1,8 @@
 syntax on
 
+" Auto-wrap markdown files after 80 chars
+autocmd BufNewFile,BufRead *.md set tw=79
+
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre *.c :normal gg=G
@@ -91,3 +94,5 @@ let g:terraform_align=1
 
 let g:AutoPairsShortcutFastWrap = '<c-e>'
 let g:AutoPairsShortcutBackInsert = '<c-b>'
+
+let g:vim_markdown_folding_disabled = 1

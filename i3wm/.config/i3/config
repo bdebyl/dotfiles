@@ -168,8 +168,9 @@ bindsym $mod+r mode "resize"
 bindsym --release $mod+Ctrl+l  exec --no-startup-id slock
 bindsym           Print        exec --no-startup-id flameshot gui -p /tmp
 bindsym           $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video2
-bindsym           $mod+P       exec --no-startup-id passmenu
 bindsym           $mod+Shift+f exec --no-startup-id [ ! "$(pgrep brave)" ] && brave || notify-send -u low "Brave" "Brave already running!"
+bindsym           $mod+P       exec --no-startup-id passmenu
+bindsym           $mod+Shift+P exec --no-startup-id pkill polybar && exec polybar bar
 bindsym           $mod+grave   exec --no-startup-id ~/.local/bin/dmenuunicode
 bindsym           $mod+y       exec --no-startup-id ~/.local/bin/yubiswitch -n -t
 
