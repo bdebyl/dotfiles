@@ -50,3 +50,6 @@ alias checkout="git checkout"
 alias push="git push"
 alias commit="git commit"
 alias pull="git pull"
+
+# sshtunnel
+alias tunnelhome="ssh -L 8080:192.168.1.1:80 -N home.bdebyl.net"

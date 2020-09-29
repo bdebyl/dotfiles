@@ -1,14 +1,18 @@
 syntax on
 
+" Auto-wrap markdown files after 80 chars
+autocmd BufNewFile,BufRead *.md set tw=79
+autocmd BufNewFile,BufRead *.md set conceallevel=1
+
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre *.c :normal gg=G
 
-set expandtab
 set autoindent
-set smartindent
+set expandtab
 set nowrap
 set number relativenumber
+set smartindent
 
 " Autocompletion in lower menu
 set wildmenu
@@ -34,20 +38,27 @@ endif
 " Plugged
 call plug#begin('~/.vim/plugged')
 
-Plug 'fatih/vim-go'
-Plug 'junegunn/fzf.vim'
+Plug 'bdebyl/clang_complete'
+Plug 'chr4/nginx.vim'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'plasticboy/vim-markdown'
 Plug 'sirver/UltiSnips' | Plug 'honza/vim-snippets'
-Plug 'bdebyl/clang_complete'
 
 call plug#end()
 
 nnoremap <silent> <C-o> :Buffers<CR>
 nnoremap <silent> <C-p> :let $FZF_DEFAULT_COMMAND='find . -type f -not -path "*.git*"' <bar> Files<CR>
 nnoremap <silent> <C-f> :let $FZF_DEFAULT_COMMAND='find ~ -type f -not -path "*.git*"' <bar> Files<CR>
+execute "set <M-r>=\er"
+nnoremap <silent> <M-r> :browse oldfiles<CR>
+nnoremap tn :tabnew<Space>
+nnoremap te :tabe<Space>
 
 colorscheme onedark
 let g:airline#extensions#tabline#enabled = 1
@@ -87,3 +98,8 @@ let g:terraform_align=1
 
 let g:AutoPairsShortcutFastWrap = '<c-e>'
 let g:AutoPairsShortcutBackInsert = '<c-b>'
+
+let g:vim_markdown_folding_disabled = 1
+
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)

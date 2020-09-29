@@ -29,6 +29,7 @@ autoload -U select-word-style
 select-word-style bash
 
 # Lines configured by zsh-newuser-install
+setopt histignoredups
 HISTFILE=~/.cache/histfile
 HISTSIZE=1000
 SAVEHIST=1000

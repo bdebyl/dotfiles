@@ -2,3 +2,4 @@
 *.pyc
 plugged/
 mail/.mutt/mailboxes
+.netrwhist
