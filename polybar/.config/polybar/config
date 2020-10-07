@@ -245,11 +245,6 @@ label-muted-foreground = #666
 ; click-right =
 ; click-middle =
 
-[module/corona]
-type = custom/script
-exec = curl -s https://corona-stats.online/us 2>/dev/null | sed -n 's/\x1b\[[0-9;]*m//g;s/[║\ ]//g;/USA/p' | awk -F'│' '{printf "%{F#dff522} %s%{F-} (%{F#98a80f}%s%{F-}) %{F#f53022} %s%{F-} (%{F#0a81f5}%s%{F-})", $3, $4, $5, $6}'
-interval = 3600
-
 [module/mail]
 type = custom/script
 exec = printf " %s" "$(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l)"
