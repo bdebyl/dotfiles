@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = mail filesystem memory cpu wlan eth battery pulseaudio date powermenu
+modules-right = mail filesystem memory temperature cpu wlan eth battery pulseaudio date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -257,6 +257,22 @@ exec-if = [ $(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc 
 interval = 5
 
 format-underline = #fff
+
+[module/temperature]
+type = internal/temperature
+interval = 1
+thermal-zone = 0
+
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
+
+format-warn-foreground = #f00
+format-warn-prefix = " "
+
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
+
+base-temperature = 20
+warn-temperature = 65
 
 [module/powermenu]
 type = custom/menu
