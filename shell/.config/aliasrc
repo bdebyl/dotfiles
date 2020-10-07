@@ -53,3 +53,6 @@ alias pull="git pull"
 
 # sshtunnel
 alias tunnelhome="ssh -L 8080:192.168.1.1:80 -N home.bdebyl.net"
+
+# siji font
+alias siji-preview="xfd -fn '-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1'"
