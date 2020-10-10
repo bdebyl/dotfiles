@@ -179,6 +179,7 @@ bindsym           $mod+y       exec --no-startup-id ~/.local/bin/yubiswitch -n -
 exec --no-startup-id feh --bg-fill $(find $HOME -name wall.png -type f -print -quit)
 exec --no-startup-id if ! pgrep -x compton > /dev/null; then /usr/bin/compton -C -b; fi
 exec --no-startup-id if ! pgrep polybar > /dev/null; then /usr/bin/polybar bar; fi
+exec --no-startup-id if ! pgrep udiskie > /dev/null; then /usr/bin/udiskie -t; fi
 
 
 gaps inner 6

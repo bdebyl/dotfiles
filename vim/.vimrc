@@ -2,7 +2,6 @@ syntax on
 
 " Auto-wrap markdown files after 80 chars
 autocmd BufNewFile,BufRead *.md set tw=79
-autocmd BufNewFile,BufRead *.md set conceallevel=1
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -41,6 +40,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bdebyl/clang_complete'
 Plug 'chr4/nginx.vim'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
@@ -82,8 +82,7 @@ let g:clang_user_options=' -std=c++11 || exit 0'
 " convenient IMO, and it defaults to 0.
 let g:clang_auto_select=1
 
-set conceallevel=2
-set concealcursor=vin
+" set concealcursor=vin
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
 " The single one that works with clang_complete
@@ -99,7 +98,10 @@ let g:terraform_align=1
 let g:AutoPairsShortcutFastWrap = '<c-e>'
 let g:AutoPairsShortcutBackInsert = '<c-b>'
 
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_folding_disabled = 1
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
