@@ -1,8 +1,5 @@
 syntax on
 
-" Auto-wrap markdown files after 80 chars
-autocmd BufNewFile,BufRead *.md set tw=79
-
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre *.c :normal gg=G
@@ -37,8 +34,8 @@ endif
 " Plugged
 call plug#begin('~/.vim/plugged')
 
+Plug 'fatih/vim-go'
 Plug 'junegunn/fzf.vim'
-Plug 'plasticboy/vim-markdown'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
@@ -51,10 +48,6 @@ call plug#end()
 nnoremap <silent> <C-o> :Buffers<CR>
 nnoremap <silent> <C-p> :let $FZF_DEFAULT_COMMAND='find . -type f -not -path "*.git*"' <bar> Files<CR>
 nnoremap <silent> <C-f> :let $FZF_DEFAULT_COMMAND='find ~ -type f -not -path "*.git*"' <bar> Files<CR>
-execute "set <M-r>=\er"
-nnoremap <silent> <M-r> :browse oldfiles<CR>
-nnoremap tn :tabnew<Space>
-nnoremap te :tabe<Space>
 
 colorscheme onedark
 let g:airline#extensions#tabline#enabled = 1
@@ -94,5 +87,3 @@ let g:terraform_align=1
 
 let g:AutoPairsShortcutFastWrap = '<c-e>'
 let g:AutoPairsShortcutBackInsert = '<c-b>'
-
-let g:vim_markdown_folding_disabled = 1
