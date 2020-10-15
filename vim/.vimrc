@@ -1,12 +1,5 @@
 syntax on
 
-" Auto-wrap markdown files after 80 chars
-autocmd BufNewFile,BufRead *.md set tw=79
-
-" Remove trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre *.c :normal gg=G
-
 set autoindent
 set expandtab
 set nowrap
@@ -34,20 +27,41 @@ if (has("autocmd") && !has("gui_running"))
   augroup END
 endif
 
+" Auto-wrap markdown files after 80 chars
+autocmd BufNewFile,BufRead *.md set tw=79
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre *.c :normal gg=G
+
+" pep-8 spacing/width
+au BufNewFile,BufRead *.py
+      \ set tabstop=4 |
+      \ set softtabstop=4 |
+      \ set shiftwidth=4 |
+      \ set expandtab |
+      \ set autoindent |
+      \ set fileformat=unix
+
 " Plugged
 call plug#begin('~/.vim/plugged')
 
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'bdebyl/clang_complete'
 Plug 'chr4/nginx.vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'nvie/vim-flake8'
 Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/syntastic'
 Plug 'sirver/UltiSnips' | Plug 'honza/vim-snippets'
 
 call plug#end()
@@ -105,3 +119,11 @@ let g:vim_markdown_folding_disabled = 1
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

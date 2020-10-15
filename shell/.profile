@@ -51,6 +51,7 @@ if [ -d "$HOME/go/bin" ]; then
     export PATH="$GOPATH/bin:$PATH"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
 #  ___ _ __  __ _ __ ___
 # / -_) '  \/ _` / _(_-<
 # \___|_|_|_\__,_\__/__/
