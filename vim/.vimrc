@@ -1,5 +1,6 @@
 syntax on
 
+set hlsearch
 set autoindent
 set expandtab
 set nowrap
