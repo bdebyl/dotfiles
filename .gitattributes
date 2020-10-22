@@ -1,8 +1,9 @@
 git/.config/git/config filter=git-crypt diff=git-crypt
 khal/.config/khal/config filter=git-crypt diff=git-crypt
 mail/.msmtprc filter=git-crypt diff=git-crypt
-mail/.mutt/oracle filter=git-crypt diff=git-crypt
 mail/.muttrc filter=git-crypt diff=git-crypt
+mail/.mutt/oracle filter=git-crypt diff=git-crypt
+mail/.mutt/oracle-signature filter=git-crypt diff=git-crypt
 mail/.offlineimaprc filter=git-crypt diff=git-crypt
 shell/.config/varsrc filter=git-crypt diff=git-crypt
 ssh/** filter=git-crypt diff=git-crypt

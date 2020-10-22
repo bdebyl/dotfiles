@@ -5,6 +5,7 @@ set expandtab
 set nowrap
 set number relativenumber
 set smartindent
+set hlsearch
 
 " Autocompletion in lower menu
 set wildmenu
@@ -73,6 +74,9 @@ execute "set <M-r>=\er"
 nnoremap <silent> <M-r> :browse oldfiles<CR>
 nnoremap tn :tabnew<Space>
 nnoremap te :tabe<Space>
+
+" Ctrl+S for replacing spaces after word with single space
+nnoremap <C-s> helcw <Esc>e
 
 colorscheme onedark
 let g:airline#extensions#tabline#enabled = 1
