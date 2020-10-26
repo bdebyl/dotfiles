@@ -47,6 +47,7 @@ au BufNewFile,BufRead *.py
 " Plugged
 call plug#begin('~/.vim/plugged')
 
+Plug 'Raimondi/delimitMate'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'bdebyl/clang_complete'
 Plug 'chr4/nginx.vim'
@@ -56,7 +57,6 @@ Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
-Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -112,9 +112,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 let g:terraform_align=1
-
-let g:AutoPairsShortcutFastWrap = '<c-e>'
-let g:AutoPairsShortcutBackInsert = '<c-b>'
 
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
