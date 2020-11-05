@@ -15,9 +15,11 @@ set mbox_type  = Maildir
 unset       confirmappend
 
 source "~/.mutt/mailboxes"
-macro index <F5> 'source ~/.mutt/bdebyl!'
-macro index <F6> 'source ~/.mutt/skudakrennsport!'
+# macro index,pager <F5> 'source ~/.mutt/bdebyl!'
+# macro index,pager <F6> 'source ~/.mutt/debyltech!'
+# macro index,pager <F7> 'source ~/.mutt/skudakrennsport!'
 folder-hook 'bdebyl' 'source ~/.mutt/bdebyl'
+folder-hook 'debyltech' 'source ~/.mutt/debyltech'
 folder-hook 'skudakrennsport' 'source ~/.mutt/skudakrennsport'
 folder-hook trash$ unset trash
 # cryptography
