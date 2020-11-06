@@ -1,7 +1,0 @@
-# name : Prompts user for entry before continuing
-# key : prompt
-# condition: ansible
-# --
-- name: ${1:Prompt user for ...}
-  prompt: "${2:Question?}"
-  private: ${0:yes}

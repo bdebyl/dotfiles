@@ -1,6 +1,0 @@
-# name: Templates a new empty task
-# key: task
-# condition: ansible
-# --
-- name: ${1:task name}
-  $0
