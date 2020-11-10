@@ -76,6 +76,7 @@ nnoremap <silent> <C-p> :let $FZF_DEFAULT_COMMAND='find . -type f -not -path "*.
 nnoremap <silent> <M-r> :browse oldfiles<CR>
 nnoremap te :tabe<Space>
 nnoremap tn :tabnew<Space>
+nnoremap <Leader>tf :TableFormat<CR>
 " d[elete] (/)search ; clears highlighting
 nnoremap d/ :let @/ = ""<CR>
 nmap ga <Plug>(EasyAlign)

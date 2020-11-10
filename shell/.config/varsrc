@@ -1,0 +1,5 @@
+export AWS_ACCESS_KEY_ID="$(pass Business/aws.amazon.com | awk '/access_key/{print $2}')"
+export AWS_SECRET_ACCESS_KEY="$(pass Business/aws.amazon.com | awk '/secret_key/{print $2}')"
+export AWS_DEFAULT_REGION="us-east-1"
+export SHOPIFY_API_KEY="$(pass Business/shopify.com | awk '/api_key/{print $2}')"
+export SHOPIFY_API_PASS="$(pass Business/shopify.com | awk '/api_pass/{print $2}')"
