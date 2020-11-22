@@ -1,4 +1,6 @@
 syntax on
+set nocompatible
+filetype plugin on
 
 " Plugged
 call plug#begin('~/.vim/plugged')
@@ -24,6 +26,7 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/syntastic'
 Plug 'sirver/UltiSnips' | Plug 'honza/vim-snippets'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Indentation rules
@@ -130,5 +133,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
+
+let g:vimwiki_list = [{'auto_diary_index': 1}]
 
 colorscheme onedark

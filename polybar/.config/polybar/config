@@ -37,7 +37,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = mail filesystem memory temperature cpu wlan eth battery pulseaudio date powermenu
+modules-right = spotify mail filesystem memory temperature cpu wlan eth battery pulseaudio date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -244,6 +244,14 @@ label-muted-foreground = #666
 ; Right and Middle click (unreleased)
 ; click-right =
 ; click-middle =
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.local/bin/spotify_status.py -f '{artist}: {song}'
+format-underline = #1db954
 
 [module/mail]
 type = custom/script
