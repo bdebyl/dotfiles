@@ -1,3 +1,4 @@
+# vi:syntax=dosini
 [colors]
 alert = #bd2c40
 background = #111

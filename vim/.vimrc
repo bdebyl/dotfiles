@@ -43,7 +43,7 @@ if (has("autocmd") && !has("gui_running"))
   augroup END
 endif
 " Auto-wrap markdown files after 80 chars
-autocmd BufNewFile,BufRead *.md set tw=79
+autocmd BufNewFile,BufRead *.md,*.wiki set tw=79
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 " pep-8 spacing/width
