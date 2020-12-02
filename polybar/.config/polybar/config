@@ -297,7 +297,7 @@ format-prefix = " "
 format-warn-foreground = #f00
 format-warn-prefix = " "
 
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
+hwmon-path = ${env:HWMON:/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input}
 
 base-temperature = 20
 warn-temperature = 65
