@@ -82,6 +82,8 @@ nnoremap tn :tabnew<Space>
 nnoremap <Leader>tf :TableFormat<CR>
 " d[elete] (/)search ; clears highlighting
 nnoremap d/ :let @/ = ""<CR>
+nnoremap <Leader>ic i/* Copyright <C-R>=strftime('%Y')<C-M> Bastian de Byl*/<CR><ESC>
+
 nmap ga <Plug>(EasyAlign)
 imap <C-c> <plug>NERDCommenterInsert
 xmap ga <Plug>(EasyAlign)
@@ -93,13 +95,13 @@ let g:airline#extensions#tabline#show_buffers = 0
 " Clang Complete Settings
 let g:clang_use_library=1
 let g:clang_periodic_quickfix=0
-let g:clang_complete_copen=1
+let g:clang_complete_copen=0
 let g:clang_close_preview=1
 let g:clang_complete_macros=1
 let g:clang_complete_patterns=0
 let g:clang_memory_percent=70
 let g:clang_user_options=' -std=c99 || exit 0'
-let g:clang_auto_select=1
+let g:clang_auto_select=0
 " set concealcursor=vin
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
@@ -134,6 +136,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
-let g:vimwiki_list = [{'auto_diary_index': 1}]
+let g:vimwiki_list = [{'auto_diary_index': 1, 'template_default': 'default', 'template_ext': 'html', 'template_path': '$HOME/vimwiki/templates'}]
 
 colorscheme onedark
