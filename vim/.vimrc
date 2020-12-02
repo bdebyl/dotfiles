@@ -1,4 +1,6 @@
 syntax on
+set nocompatible
+filetype plugin on
 
 " Plugged
 call plug#begin('~/.vim/plugged')
@@ -24,6 +26,7 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/syntastic'
 Plug 'sirver/UltiSnips' | Plug 'honza/vim-snippets'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Indentation rules
@@ -40,7 +43,7 @@ if (has("autocmd") && !has("gui_running"))
   augroup END
 endif
 " Auto-wrap markdown files after 80 chars
-autocmd BufNewFile,BufRead *.md set tw=79
+autocmd BufNewFile,BufRead *.md,*.wiki set tw=79
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 " pep-8 spacing/width
@@ -78,6 +81,7 @@ nnoremap te :tabe<Space>
 nnoremap tn :tabnew<Space>
 " d[elete] (/)search ; clears highlighting
 nnoremap d/ :let @/ = ""<CR>
+vnoremap <Leader>s :sort<CR><ESC>
 nmap ga <Plug>(EasyAlign)
 imap <C-c> <plug>NERDCommenterInsert
 xmap ga <Plug>(EasyAlign)
@@ -129,5 +133,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
+
+let g:vimwiki_list = [{'auto_diary_index': 1}]
 
 colorscheme onedark
