@@ -6,6 +6,11 @@ case $- in
   *) return;;
 esac
 
+# Load aliases
+if [ -f "$HOME/.config/aliasrc" ]; then
+  . "$HOME/.config/aliasrc"
+fi
+
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -33,17 +38,6 @@ setopt histignoredups
 HISTFILE=~/.cache/histfile
 HISTSIZE=1000
 SAVEHIST=1000
-
-# Load aliases
-if [ -f "$HOME/.config/aliasrc" ]; then
-  . "$HOME/.config/aliasrc"
-fi
-
-# Load custom shell vars
-if [ -f "$HOME/.config/varsrc" ]; then
-  . "$HOME/.config/varsrc"
-fi
-
 # The following lines were added by compinstall
 autoload -Uz compinit
 
@@ -86,3 +80,9 @@ if type keychain &>/dev/null; then
     echo "keychain - keyfile does not exist!"
   fi
 fi
+
+# Load custom shell vars
+if [ -f "$HOME/.config/varsrc" ]; then
+  . "$HOME/.config/varsrc"
+fi
+
