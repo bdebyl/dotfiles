@@ -94,6 +94,7 @@ let g:airline#extensions#tabline#show_buffers = 0
 
 " Clang Complete Settings
 let g:clang_use_library=1
+let g:clang_use_quickfix=0
 let g:clang_periodic_quickfix=0
 let g:clang_complete_copen=0
 let g:clang_close_preview=1
@@ -126,7 +127,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_c_include_dirs = ['/usr/local/lib/libopencm3/include/']
+let g:syntastic_c_include_dirs = ['/usr/arm-none-eabi/include/libopencm3']
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ["python"], 'passive_filetypes': ["c"] }
 
 let g:NERDSpaceDelims = 1

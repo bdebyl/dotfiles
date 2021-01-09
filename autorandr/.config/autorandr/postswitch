@@ -1,0 +1,2 @@
+#!/bin/bash
+feh --bg-fill $(find $HOME -name wall.png -type f -print -quit)
