@@ -19,6 +19,8 @@ no_focus [title="camfloat"]
 set $mod Mod4
 
 assign [class="Firefox"] 1
+assign [class="Thunderbird"] 4
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
@@ -168,7 +170,7 @@ bindsym $mod+r mode "resize"
 bindsym --release $mod+Ctrl+l  exec --no-startup-id slock
 bindsym           Print        exec --no-startup-id flameshot gui -p /tmp
 bindsym           $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video2
-bindsym           $mod+Shift+f exec --no-startup-id [ ! "$(pgrep brave)" ] && brave || notify-send -u low "Brave" "Brave already running!"
+bindsym           $mod+Shift+f exec --no-startup-id [ ! "$(pgrep firefox)" ] && firefox || notify-send -u low "firefox" "firefox already running!"
 bindsym           $mod+P       exec --no-startup-id passmenu
 bindsym           $mod+Shift+P exec --no-startup-id pkill polybar && HWMON="$(find /sys/devices/platform/coretemp.0/hwmon/ -name 'temp1_input')" exec /usr/bin/polybar bar
 bindsym           $mod+grave   exec --no-startup-id ~/.local/bin/dmenuunicode
@@ -178,6 +180,7 @@ bindsym           $mod+y       exec --no-startup-id ~/.local/bin/yubiswitch -n -
 ## Wallpaper
 exec --no-startup-id feh --bg-fill $(find $HOME -name wall.png -type f -print -quit)
 exec --no-startup-id if ! pgrep -x picom > /dev/null; then /usr/bin/picom -C -b; fi
+exec --no-startup-id if ! pgrep udiskie > /dev/null; then /usr/bin/udiskie -t; fi
 exec --no-startup-id if ! pgrep polybar > /dev/null; then HWMON="$(find /sys/devices/platform/coretemp.0/hwmon/ -name 'temp1_input')" /usr/bin/polybar bar; fi
 
 

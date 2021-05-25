@@ -4,6 +4,10 @@ filetype plugin on
 
 " Plugged
 call plug#begin('~/.vim/plugged')
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'vmchale/dhall-vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'bdebyl/clang_complete'
 Plug 'bfrg/vim-cpp-modern'
@@ -71,6 +75,7 @@ set autochdir
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set iskeyword-=_
 
 execute "set <M-r>=\er"
 nnoremap <silent> <C-f> :let $FZF_DEFAULT_COMMAND='find ~ -type f -not -path "*.git*"' <bar> Files<CR>
@@ -135,5 +140,8 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 let g:vimwiki_list = [{'auto_diary_index': 1}]
+
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*'  })
 
 colorscheme onedark

@@ -39,5 +39,5 @@ st.foreground:  #000000
 
 
 !! Extensions and URLs
-*.url-launcher:    /usr/bin/brave
+*.url-launcher:    /usr/bin/firefox
 *.matcher.button:            1

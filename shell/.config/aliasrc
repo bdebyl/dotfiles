@@ -40,13 +40,18 @@ alias fcd='cd $(find $HOME -type d -not -path "*.git*" | fzf)'
 alias pasteix='curl -F "f:1=<-" ix.io <'
 
 # khal/ikhal
-alias ikhal="$HOME/.config/khal/.venv/bin/ikhal"
-alias khal="$HOME/.config/khal/.venv/bin/khal"
+alias ikhal="\$HOME/.config/khal/.venv/bin/ikhal"
+alias khal="\$HOME/.config/khal/.venv/bin/khal"
 
-alias vimrc="vim $HOME/.vimrc"
+# vim
+alias vimrc="vim \$HOME/.vimrc"
+alias vimnorc="vim -u NONE"
 
 # git
 alias checkout="git checkout"
 alias push="git push"
 alias commit="git commit"
 alias pull="git pull"
+
+# oci gov
+alias barndoor-oc6='ssh -vtD 1081 barndoor6.ob.us-phoenix-1.oci.oraclecloud.com watch -n 90 date'

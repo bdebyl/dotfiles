@@ -86,3 +86,7 @@ if [ -f "$HOME/.config/varsrc" ]; then
   . "$HOME/.config/varsrc"
 fi
 
+# Maven
+export M3_HOME="/opt/maven"
+export M3="$M3_HOME/bin"
+export PATH="$PATH:$M3"
