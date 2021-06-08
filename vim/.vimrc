@@ -35,6 +35,7 @@ autocmd Filetype c setlocal shiftwidth=4 tabstop=4
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c ClangFormatAutoEnable
+autocmd FileType go inoremap <buffer> . .<C-X><C-o>
 if (has("autocmd") && !has("gui_running"))
   augroup colorset
     autocmd!
@@ -82,7 +83,7 @@ nnoremap tn :tabnew<Space>
 nnoremap <Leader>tf :TableFormat<CR>
 " d[elete] (/)search ; clears highlighting
 nnoremap d/ :let @/ = ""<CR>
-nnoremap <Leader>ic i/* Copyright <C-R>=strftime('%Y')<C-M> Bastian de Byl*/<CR><ESC>
+nnoremap <Leader>ic O/* Copyright <C-R>=strftime('%Y')<C-M> Bastian de Byl */<ESC>
 
 nmap ga <Plug>(EasyAlign)
 imap <C-c> <plug>NERDCommenterInsert
