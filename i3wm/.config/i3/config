@@ -15,8 +15,29 @@ for_window [class="^.*"] border pixel 1
 for_window [title="camfloat"] floating enable
 for_window [title="camfloat"] sticky enable
 for_window [title="camfloat"] border pixel 0
+for_window [title="Assign Footprints"] floating enable
+for_window [title="3D Viewer"] floating enable
+for_window [class="Xfce4-panel"] floating enable
+for_window [class="Thunar"] floating enable
 no_focus [title="camfloat"]
 set $mod Mod4
+
+# for plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+# for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [class="plasma-systemmonitor"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"]
 
 assign [class="Firefox"] 1
 # Font for window titles. Will also be used by the bar unless a different font
@@ -129,7 +150,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -165,26 +186,34 @@ bindsym $mod+r mode "resize"
 # }
 
 # Custom configurations
-bindsym --release $mod+Ctrl+l  exec --no-startup-id slock
-bindsym           Print        exec --no-startup-id flameshot gui -p /tmp
-bindsym           $mod+Shift+w exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video2
-bindsym           $mod+Shift+f exec --no-startup-id [ ! "$(pgrep firefox)" ] && firefox || notify-send -u low "Firefox" "Firefox already running!"
-bindsym           $mod+P       exec --no-startup-id passmenu
-bindsym           $mod+Shift+P exec --no-startup-id pkill polybar && exec polybar bar
-bindsym           $mod+grave   exec --no-startup-id ~/.local/bin/dmenuunicode
-bindsym           $mod+y       exec --no-startup-id ~/.local/bin/yubiswitch -n -t
+bindsym --release            $mod+Ctrl+l  exec --no-startup-id slock
+bindsym Print                exec --no-startup-id flameshot gui -p /tmp
+bindsym $mod+Shift+w         exec --no-startup-id pkill mpv || mpv --no-osc --no-input-default-bindings --geometry=-20-20 --autofit=25% --title="camfloat" /dev/video2
+bindsym $mod+Shift+f         exec --no-startup-id [ ! "$(pgrep firefox)" ] && firefox || notify-send -u low "Firefox" "Firefox already running!"
+bindsym $mod+P               exec --no-startup-id passmenu
+# bindsym           $mod+Shift+P exec --no-startup-id pkill polybar && exec polybar bar
+bindsym $mod+grave           exec --no-startup-id ~/.local/bin/dmenuunicode
+bindsym $mod+y               exec --no-startup-id ~/.local/bin/yubiswitch -n -t
+bindsym $mod+c               exec --no-startup-id /usr/bin/code
+bindsym $mod+m               exec --no-startup-id /usr/bin/mailspring --no-sandbox
+bindsym $mod+Shift+e         exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
+bindsym XF86AudioMute        exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
+bindsym XF86AudioMicMute     exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 
 # Volume
-bindsym XF86AudioRaiseVolume exec pamixer -i 5
-bindsym XF86AudioLowerVolume exec pamixer -d 5
-bindsym XF86AudioMute exec pamixer -t
+# bindsym XF86AudioRaiseVolume exec pamixer -i 5
+# bindsym XF86AudioLowerVolume exec pamixer -d 5
+# bindsym XF86AudioMute exec pamixer -t
 
 # Startup applications
 ## Wallpaper
-exec --no-startup-id feh --bg-fill $(find $HOME -name wall.png -type f -print -quit)
-exec --no-startup-id if ! pgrep -x picom > /dev/null; then /usr/bin/picom -C -b; fi
-exec --no-startup-id if ! pgrep polybar > /dev/null; then /usr/bin/polybar bar; fi
+exec --no-startup-id if ! pgrep -x picom > /dev/null; then /usr/bin/picom -C -b --vsync --backend glx --xrender-sync-fence; fi
+# exec --no-startup-id if ! pgrep polybar > /dev/null; then /usr/bin/polybar bar; fi
 exec --no-startup-id if ! pgrep udiskie > /dev/null; then /usr/bin/udiskie -t; fi
+exec --no-startup-id if ! pgrep mpris-proxy > /dev/null; then /usr/bin/mpris-proxy; fi
+exec --no-startup-id if [ $XDG_CURRENT_DESKTOP != "KDE" ]; then ~/.fehbg; fi
 
 
 gaps inner 6

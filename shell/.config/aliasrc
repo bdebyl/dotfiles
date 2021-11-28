@@ -40,19 +40,20 @@ alias fcd='cd $(find $HOME -type d -not -path "*.git*" | fzf)'
 alias pasteix='curl -F "f:1=<-" ix.io <'
 
 # khal/ikhal
-alias ikhal="$HOME/.config/khal/.venv/bin/ikhal"
-alias khal="$HOME/.config/khal/.venv/bin/khal"
+alias ikhal="\$HOME/.config/khal/.venv/bin/ikhal"
+alias khal="\$HOME/.config/khal/.venv/bin/khal"
 
-alias vimrc="vim $HOME/.vimrc"
+alias vimrc="vim \$HOME/.vimrc"
 
 # git
 alias checkout="git checkout"
 alias push="git push"
 alias commit="git commit"
 alias pull="git pull"
-
+alias gitcount='printf "%04d\n" "$(git rev-list --count master)"'
 # sshtunnel
 alias tunnelhome="ssh -L 8080:192.168.1.1:80 -N home.bdebyl.net"
 
 # siji font
 alias siji-preview="xfd -fn '-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1'"
+

@@ -10,9 +10,9 @@ secondary = #e60053
 
 [bar/bar]
 width = 100%
-height = 24
+height = 32
 radius = 2.0
-fixed-center = false
+fixed-center = true
 bottom = true
 
 background = ${colors.background}
@@ -38,10 +38,10 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 
 modules-left = i3
-modules-right = spotify mail filesystem memory temperature cpu wlan eth battery pulseaudio date powermenu
+modules-right = spotify mail filesystem memory temperature cpu vpn wlan eth pulseaudio date powermenu
 
 tray-position = right
-tray-padding = 0
+tray-padding = 5
 ;wm-restack = i3
 ;override-redirect = true
 ;scroll-up = i3wm-wsnext
@@ -55,7 +55,6 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-1 = /home
 
 fixed-values = true
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %free%
@@ -119,7 +118,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp3s0
+interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -142,7 +141,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = eth0
+interface = enp3s0
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -150,11 +149,16 @@ format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+[module/vpn]
+type = internal/network
+interface = tun0
+interval = 3.0
+accumulate-stats = true
+
+format-connected-underline = #5555aa
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %downspeed% %upspeed%
 
 [module/date]
 type = internal/date
@@ -169,43 +173,10 @@ format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #b6cc0c
-
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = #ff7065
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = #2993ff
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
-
 [module/pulseaudio]
 type = internal/pulseaudio
 
-sink = [ $(pactl list sinks | sed -n '/RUNNING/{:start /alsa_output/!{N;b start};//p}' | sed -n 's/.*\(alsa_output.*$\).*/\1/p') ]
+sink = [ $(pactl list sinks | sed -n '/RUNNING/{:start /alsa_output/!{N;b start};//p}' | sed -n 's/.*\\(alsa_output.*$\\).*/\\1/p') ]
 
 ; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
 ; Default: true
@@ -256,15 +227,16 @@ format-underline = #1db954
 
 [module/mail]
 type = custom/script
-exec = printf " %s" "$(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l)"
-exec-if = [ $(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]
+exec = printf " %s" "$(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \\; -quit | wc -l)"
+exec-if = [ $(find ~/mail/*/INBOX -type d -name "new" -exec ls {} \\; -quit | wc -l) -gt 0 ]
 interval = 5
 
 format-underline = #fff
 
 [module/temperature]
-type = internal/temperature
-interval = 1
+type = custom/script
+exec = sensors | awk '/Package id/{ print $4 }' | tr -d '+'
+interval = 5
 thermal-zone = 0
 
 format-prefix-foreground = ${colors.foreground-alt}
@@ -273,7 +245,7 @@ format-prefix = " "
 format-warn-foreground = #f00
 format-warn-prefix = " "
 
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
+# hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
 
 base-temperature = 20
 warn-temperature = 65

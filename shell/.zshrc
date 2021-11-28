@@ -14,6 +14,11 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' formats ' %F{red}(%b)'
 zstyle ':vcs_info:*' enable git
 
+# zsh completions
+fpath=(~/.local/share/zsh/zsh-completions/src $fpath)
+# auto suggestions
+. ~/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555"
 # Enable colors and change prompt
 autoload -U colors && colors
 PS1="%F{231}%n%F{green}@%F{blue}%M%{$reset_color%}: %F{yellow}%~%{$reset_color%}\$vcs_info_msg_0_%{$reset_color%} $%b "

@@ -5,6 +5,7 @@ filetype plugin on
 " Plugged
 call plug#begin('~/.vim/plugged')
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'vim-airline/vim-airline'
 Plug 'bdebyl/clang_complete'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'chr4/nginx.vim'
@@ -84,6 +85,7 @@ nnoremap <Leader>tf :TableFormat<CR>
 " d[elete] (/)search ; clears highlighting
 nnoremap d/ :let @/ = ""<CR>
 nnoremap <Leader>ic O/* Copyright <C-R>=strftime('%Y')<C-M> Bastian de Byl */<ESC>
+vnoremap <Leader>s :sort<CR>
 
 nmap ga <Plug>(EasyAlign)
 imap <C-c> <plug>NERDCommenterInsert
@@ -138,6 +140,7 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'auto_diary_index': 1, 'template_default': 'default', 'template_ext': 'html', 'template_path': '$HOME/vimwiki/templates'}]
 
 colorscheme onedark

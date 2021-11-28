@@ -1,0 +1,10 @@
+{
+    "editor.lineNumbers": "relative",
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "redhat.telemetry.enabled": true
+}
