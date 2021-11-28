@@ -1,9 +1,0 @@
-# -*- mode: shell -*-
-# name: Switch (case) statement
-# key: case
-# --
-case ${1:case} in
-    ${2:*})
-        $0
-        ;;
-esac

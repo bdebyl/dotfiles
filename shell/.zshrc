@@ -6,6 +6,8 @@ case $- in
   *) return;;
 esac
 
+fpath=(~/.local/share/zsh/zsh-completions/src $fpath)
+. ~/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -21,6 +23,22 @@ fpath=(~/.local/share/zsh/zsh-completions/src $fpath)
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555"
 # Enable colors and change prompt
 autoload -U colors && colors
+# function powerline_precmd() {
+#   PS1="$(powerline-shell --shell zsh $?)"
+# }
+#
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd"  ]; then
+#       return
+#     fi
+#   done
+#   precmd_functions+=(powerline_precmd)
+# }
+#
+# if [ "$TERM" != "linux"  ]; then
+#   install_powerline_precmd
+# fi
 PS1="%F{231}%n%F{green}@%F{blue}%M%{$reset_color%}: %F{yellow}%~%{$reset_color%}\$vcs_info_msg_0_%{$reset_color%} $%b "
 #PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\h: \[\$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] \$ "
 setopt autocd extendedglob nomatch

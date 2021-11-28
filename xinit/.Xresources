@@ -4,7 +4,7 @@
 ! \__ \ |_
 ! |___/\__|
 !
-st.font:        DejaVuSansMono:pixelsize=11:antialias=false;
+st.font:        DejaVuSansMono:pixelsize=14:antialias=true
 st.alpha:       200
 !! Colors
 st.foreground:  #000000
