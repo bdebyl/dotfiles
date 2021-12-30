@@ -109,3 +109,5 @@ if type keychain &>/dev/null; then
     echo "keychain - keyfile does not exist!"
   fi
 fi
+
+export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"

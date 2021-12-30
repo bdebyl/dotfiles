@@ -82,4 +82,4 @@ export VISUAL="emacsclient -nw"
 # shellcheck source=.bash/keychain.sh
 . "$HOME/.bash/keychain.sh"
 
-export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/19.1/quartus/sopc_builder/bin"
+export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
