@@ -7,5 +7,9 @@
         "editor.defaultFormatter": "xaver.clang-format"
     },
     "redhat.telemetry.enabled": true,
-    "editor.fontSize": 12
+    "editor.fontSize": 12,
+    "editor.tabSize": 2,
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_-\"",
+    "editor.formatOnSave": true
 }

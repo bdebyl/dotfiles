@@ -4,7 +4,7 @@
 # \__ \ || (_) \ V  V /
 # |___/\__\___/ \_/\_/
 #
-PACKAGES=$(shell /bin/bash -c 'ls -d */')
+PACKAGES=$(shell /bin/bash -c 'ls -d ./*/')
 
 stow:
 	@echo "Stowing packages: [${PACKAGES}]"
