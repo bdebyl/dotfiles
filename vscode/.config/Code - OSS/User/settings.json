@@ -11,5 +11,6 @@
     "editor.tabSize": 2,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_-\"",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "git.autofetch": true
 }
