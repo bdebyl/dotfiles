@@ -6,8 +6,6 @@ case $- in
   *) return;;
 esac
 
-fpath=(~/.local/share/zsh/zsh-completions/src $fpath)
-. ~/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -19,7 +17,7 @@ zstyle ':vcs_info:*' enable git
 # zsh completions
 fpath=(~/.local/share/zsh/zsh-completions/src $fpath)
 # auto suggestions
-. ~/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555"
 # Enable colors and change prompt
 autoload -U colors && colors
