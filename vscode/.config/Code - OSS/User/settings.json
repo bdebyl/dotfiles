@@ -12,5 +12,8 @@
     "security.workspace.trust.untrustedFiles": "open",
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_-\"",
     "editor.formatOnSave": true,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }
