@@ -67,3 +67,5 @@ alias siji-preview="xfd -fn '-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso
 
 
 alias aws-instances='function _awsInstances(){ if [ $1 ]; then aws --profile $1 ec2 describe-instances --filters Name=instance-state-name,Values=running --filters Name=tag-value,Values="*$2*" --output text --query "Reservations[].Instances[][join('\''.'\'',[Tags[?Key=='\''Name'\''].Value|[0],Tags[?Key=='\''Vpc'\''].Value|[0],Tags[?Key=='\''Subaccount'\''].Value|[0],Tags[?Key=='\''Rootaccount'\''].Value|[0],\`internal\`])]" | sort; else echo "USAGE: aws-instances profile optional_search"; fi };_awsInstances'
+
+alias slack-pw='while sleep .1; do ps aux | grep slack | grep -v grep | grep magic; done'
