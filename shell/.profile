@@ -10,7 +10,6 @@
 #umask 022
 
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-export BROWSER="firefox"
 
 # create the symbolic link to use for emacs
 # ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock"

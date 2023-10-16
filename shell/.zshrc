@@ -89,6 +89,9 @@ export ALTERNATE_EDITOR="emacsclient -nw"
 export EDITOR="vim"
 export VISUAL="vim"
 
+# browser
+export BROWSER="microsoft-edge-stable"
+
 # keychain for gpg/ssh
 KEYFILE="$HOME/.config/.keys"
 KEYFILEGPG="$HOME/.config/.keys-gpg"
@@ -98,8 +101,8 @@ if type keychain &>/dev/null; then
   # check for keyfile
   if [ -f "$KEYFILE" ] || [ -f "$KEYFILEGPG" ]; then
     # initialize keychain
-    [ -f "$KEYFILE" ] && keychain --agents ssh "$( cat $KEYFILE )" 2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
-    [ -f "$KEYFILEGPG" ] && keychain --agents gpg "$( cat $KEYFILEGPG )" 2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
+    [ -f "$KEYFILE" ] && keychain --agents ssh "$(cat $KEYFILE)"  2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
+    [ -f "$KEYFILEGPG" ] && keychain --agents gpg "$(cat $KEYFILEGPG)"  2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
     # load keychain environment
     [ -f "$HOME/.keychain/$HOSTNAME-sh" ] && . "$HOME/.keychain/$HOSTNAME-sh"
     [ -f "$HOME/.keychain/$HOSTNAME-sh-gpg" ] && . "$HOME/.keychain/$HOSTNAME-sh-gpg"
@@ -109,3 +112,6 @@ if type keychain &>/dev/null; then
 fi
 
 export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

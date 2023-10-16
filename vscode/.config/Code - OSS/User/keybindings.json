@@ -45,5 +45,14 @@
         "key": "ctrl+k",
         "command": "-extension.vim_ctrl+k",
         "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+alt+=",
+        "command": "www.aligncode",
+        "when": "editorTextFocus && !editorReadonly"
     }
 ]

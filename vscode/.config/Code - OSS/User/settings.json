@@ -1,7 +1,7 @@
 {
     "editor.lineNumbers": "relative",
     "[c]": {
-        "editor.defaultFormatter": "xaver.clang-format"
+        "editor.defaultFormatter": "xaver.clang-format",
     },
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
@@ -11,9 +11,38 @@
     "editor.tabSize": 2,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_-\"",
-    "editor.formatOnSave": true,
     "git.autofetch": true,
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
+    },
+    "git.confirmSync": false,
+    "editor.fontFamily": "'Cascadia Mono', 'monospace', monospace",
+    "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
+    "editor.tokenColorCustomizations": {
+        "comments": {
+            "fontStyle": "italic"
+        }
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "git.openRepositoryInParentFolders": "never",
+    "explorer.confirmDelete": false,
+    "dart.openDevTools": "flutter",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.selectionHighlight": false,
+        "editor.rulers": [
+            80
+        ],
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "mathematic.vscode-latex"
+    },
+    "todohighlight.isEnable": true,
+    "vim.vimrc.enable": true
 }
