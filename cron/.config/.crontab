@@ -1,2 +1,1 @@
-* * * * * /usr/bin/offlineimap -o -u syslog
-* * * * * if [ $(find $HOME/mail/*/INBOX -type d -name "new" -exec ls {} \; -quit | wc -l) -gt 0 ]; then XDG_RUNTIME_DIR=/run/user/$(id -u) && notify-send -u normal "Mail" "New mail"; fi
+*/15 * * * * rsync ~/src/ truenas.localdomain:src/

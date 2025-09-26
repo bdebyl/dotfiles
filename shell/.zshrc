@@ -16,6 +16,7 @@ zstyle ':vcs_info:*' enable git
 
 # zsh completions
 fpath=(~/.local/share/zsh/zsh-completions/src $fpath)
+fpath=(~/.zsh/completions $fpath)
 # auto suggestions
 . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555"
@@ -37,7 +38,7 @@ autoload -U colors && colors
 # if [ "$TERM" != "linux"  ]; then
 #   install_powerline_precmd
 # fi
-PS1="%F{231}%n%F{green}@%F{blue}%M%{$reset_color%}: %F{yellow}%~%{$reset_color%}\$vcs_info_msg_0_%{$reset_color%} $%b "
+PS1="%{$fg[231]%}%n%{$fg[green]%}@%{$fg[blue]%}%M%{$reset_color%}: %{$fg[yellow]%}%~%{$reset_color%}\$vcs_info_msg_0_%{$reset_color%} $ "
 #PS1="\[$(tput setaf 6)\]\u\[$(tput sgr0)\]\[$(tput setaf 3)\]@\[$(tput sgr0)\]\h: \[\$(tput setaf 4)\]\w\[$(tput sgr0)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\] \$ "
 setopt autocd extendedglob nomatch
 stty stop undef
@@ -101,8 +102,8 @@ if type keychain &>/dev/null; then
   # check for keyfile
   if [ -f "$KEYFILE" ] || [ -f "$KEYFILEGPG" ]; then
     # initialize keychain
-    [ -f "$KEYFILE" ] && keychain --agents ssh "$(cat $KEYFILE)"  2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
-    [ -f "$KEYFILEGPG" ] && keychain --agents gpg "$(cat $KEYFILEGPG)"  2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
+    [ -f "$KEYFILE" ] && keychain "$(cat $KEYFILE)"  2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
+    [ -f "$KEYFILEGPG" ] && keychain "$(cat $KEYFILEGPG)"  2>&1 | sed '/keychain/d;/^$/d;s/^ \* /keychain - /'
     # load keychain environment
     [ -f "$HOME/.keychain/$HOSTNAME-sh" ] && . "$HOME/.keychain/$HOSTNAME-sh"
     [ -f "$HOME/.keychain/$HOSTNAME-sh-gpg" ] && . "$HOME/.keychain/$HOSTNAME-sh-gpg"
@@ -112,6 +113,11 @@ if type keychain &>/dev/null; then
 fi
 
 export QSYS_ROOTDIR="/home/bastian/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
+export ANDROID_HOME=$HOME/android-sdk
+export ANDROID_SDK_ROOT=$HOME/android-sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export CHROME_EXECUTABLE=google-chrome-stable
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH=$PATH:$HOME/.local/bin

@@ -22,6 +22,7 @@ alias emc='TERM=xterm-256color emacsclient -nw'
 # git macros
 alias gitcleanup='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 alias gitsync='git checkout master && git pull upstream master && git push origin master && gitcleanup'
+alias newbranch='git checkout -b'
 gitbranch () {
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   if [[ "$BRANCH" = "master" || "$BRANCH" = "main" ]]; then
@@ -56,7 +57,9 @@ alias vimrc="vim \$HOME/.vimrc"
 # git
 alias checkout="git checkout"
 alias push="git push"
-alias commit="git commit"
+commit() {
+  git commit -m "$(gitbranch) - $@"
+}
 alias pull="git pull"
 alias gitcount='printf "%04d\n" "$(git rev-list --count master)"'
 # sshtunnel
@@ -65,7 +68,3 @@ alias tunnelhome="ssh -L 8080:192.168.1.1:80 -N home.bdebyl.net"
 # siji font
 alias siji-preview="xfd -fn '-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1'"
 
-
-alias aws-instances='function _awsInstances(){ if [ $1 ]; then aws --profile $1 ec2 describe-instances --filters Name=instance-state-name,Values=running --filters Name=tag-value,Values="*$2*" --output text --query "Reservations[].Instances[][join('\''.'\'',[Tags[?Key=='\''Name'\''].Value|[0],Tags[?Key=='\''Vpc'\''].Value|[0],Tags[?Key=='\''Subaccount'\''].Value|[0],Tags[?Key=='\''Rootaccount'\''].Value|[0],\`internal\`])]" | sort; else echo "USAGE: aws-instances profile optional_search"; fi };_awsInstances'
-
-alias slack-pw='while sleep .1; do ps aux | grep slack | grep -v grep | grep magic; done'
